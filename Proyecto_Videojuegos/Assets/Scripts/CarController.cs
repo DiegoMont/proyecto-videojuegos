@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public SpriteRenderer TheSpriteRender;
-    private PlayerController player;
-    private GameManagerController managerController;
-    private SpawnerController spawner;
-    public int isfixed = 0;
+
+
+	Rigidbody2D rb;
+
+	[SerializeField]
+	float accelerationPower = 5f;
+	[SerializeField]
+	float steeringPower = 5f;
+	float steeringAmount, speed, direction;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = Object.FindObjectOfType<PlayerController>();
-        managerController = Object.FindObjectOfType<GameManagerController>();
-        spawner = Object.FindObjectOfType<SpawnerController>();
-
-        spawner.carcontrol = this;
-        spawner.SetCarToPosition();
-        Debug.Log("Envia a spawner");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -27,22 +26,14 @@ public class CarController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D (Collision2D other) {
-        if(player.equippedtool != null){
-            managerController.car = this;
-        if (other.gameObject.CompareTag("Mechanic") && player.equippedtool.TheSpriteRender.color == TheSpriteRender.color){
-            isfixed = 1;
-            player.equippedtool.ReturnTool();
-        }
-        else{
-            isfixed = 2;
-            player.equippedtool.ReturnTool();
-            
-        }
-        }
-    }
+    void FixedUpdate() {
 
-    public void DestroyCar(){
-        Destroy(gameObject);
+    	steeringAmount = - Input.GetAxis("Horizontal");
+    	speed = Input.GetAxis("Vertical")*accelerationPower;
+    	direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
+    	rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction;
+
+    	rb.AddRelativeForce(Vector2.up * speed);
+    	rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
     }
 }
