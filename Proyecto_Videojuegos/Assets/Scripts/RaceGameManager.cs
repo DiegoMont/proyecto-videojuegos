@@ -1,0 +1,95 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class RaceGameManager : MonoBehaviour
+{
+    private CarController player;
+    private AutonomousCar ai;
+
+    private float StartTime;
+    private float TimerControl;
+    private bool StartanimationPlayed;
+    private bool StartsoundPlayed;
+
+    public TextMeshProUGUI texttimer;
+    private string TimerString;
+
+
+    public AudioClip Hunk;
+    public AudioSource effectplayer;
+
+    void Start()
+    {
+        player = FindObjectOfType<CarController>();
+        ai = FindObjectOfType<AutonomousCar>();
+        ConfigureClock();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        CountTime();
+    }
+
+    private void ConfigureClock()
+    {
+        if (StartanimationPlayed == false)
+        {
+            StartTime = 0;
+        }
+        else
+        {
+            //Cargar tiempo antes de entrar a los pits
+        }
+    }
+
+    private void CountTime()
+    {
+        if(StartanimationPlayed == false)
+        {
+            TimerControl = (StartTime) + Time.time;
+
+            if (StartsoundPlayed == false)
+            {
+                PlaySound("Hunk");
+                StartsoundPlayed = true;
+            }
+            
+            if (TimerControl > 2.7f)
+            {
+                StartTime -= 2.7f;
+                player.CanMove = true;
+                ai.CanMove = true;
+                StartanimationPlayed = true;
+            }   
+        }
+
+        else
+        {
+            TimerControl = (StartTime) + Time.time;
+            string mins = ((int)TimerControl / 60).ToString("00");
+            string segs = (TimerControl % 60).ToString("00");
+
+            TimerString = string.Format("{00}:{01}", mins, segs);
+            UpdateText();
+        }
+        
+    }
+
+    public void UpdateText()
+    {
+        texttimer.text = TimerString;
+    }
+
+    public void PlaySound(string sound)
+    {
+        switch (sound)
+        {
+            case "Hunk":
+                effectplayer.PlayOneShot(Hunk);
+                break;
+        }
+    }
+}
