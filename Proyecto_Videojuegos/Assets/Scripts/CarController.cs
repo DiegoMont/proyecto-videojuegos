@@ -13,6 +13,7 @@ public class CarController : MonoBehaviour
 	[SerializeField]
 	float steeringPower = 5f;
 	float steeringAmount, speed, direction;
+    public bool CanMove;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +28,20 @@ public class CarController : MonoBehaviour
     }
 
     void FixedUpdate() {
+        if (CanMove == false)
+        {
+            return;
+        }
 
-    	steeringAmount = - Input.GetAxis("Horizontal");
-    	speed = Input.GetAxis("Vertical")*accelerationPower;
-    	direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
-    	rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction;
+        else
+        {
+            steeringAmount = -Input.GetAxis("Horizontal");
+            speed = Input.GetAxis("Vertical") * accelerationPower;
+            direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
+            rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction;
 
-    	rb.AddRelativeForce(Vector2.up * speed);
-    	rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
+            rb.AddRelativeForce(Vector2.up * speed);
+            rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
+        }
     }
 }

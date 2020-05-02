@@ -15,6 +15,7 @@ public class AutonomousCar : MonoBehaviour
 
     public GameObject ObjectToRotate;
     public float DegreesOffset = 0;
+    public bool CanMove;
     //public Vector3 vectorToTarget;
 
 
@@ -30,8 +31,15 @@ public class AutonomousCar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Rotate();
+        if (CanMove == false)
+        {
+            return;
+        }
+        else
+        {
+            Move();
+            Rotate();
+        }
     }
 
     void SetTarget(Vector3 target) {
