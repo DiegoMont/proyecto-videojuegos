@@ -17,7 +17,12 @@ public class RaceQuitaVidaController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-    	RaceHealthBarScript.health -= 10f;
+         if (other.gameObject.CompareTag("RacePlayer"))
+        {
+           float life = Random.Range(1.0f, 3.0f);
+        RaceHealthBarScript.health -= life;
+        }
+    	
     	
     }
 }
