@@ -1,32 +1,59 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
-    public static string dificultad;
+    private static string difficulty = "MEDIUM";
 
-    public void DificultadFacil() {
-        dificultad = "facil";
+    public GameObject menuPerfiles;
+    public GameObject menuJuegoYTienda;
+    public GameObject menuDificultad;
+
+    void hideAll(){
+      menuPerfiles.SetActive(false);
+      menuJuegoYTienda.SetActive(false);
+      menuDificultad.SetActive(false);
     }
 
-    public void DificultadMedia() {
-        dificultad = "media";
+    void Start(){
+      hideAll();
+      selectProfile();
     }
 
-    public void DificultadDificil() {
-        dificultad = "dificil";
+    public void  selectGame(){
+      hideAll();
+      menuJuegoYTienda.SetActive(true);
     }
 
-    private bool comprobarDificultad() {
-        return dificultad != null && (dificultad == "facil" || dificultad == "media" || dificultad == "dificil");
+    public void playGame(){
+      SceneManager.LoadScene("Scenes/RaceScene");
     }
 
-    public void jugarForeverAlone() {
-        if(comprobarDificultad())
-            Debug.Log("Cambiar a Scene jugar contra la computadora");
+    public void selectProfile(){
+      hideAll();
+      menuPerfiles.SetActive(true);
     }
 
-    public void modoCooperativo()
-    {
-        if(comprobarDificultad())
-            Debug.Log("Cambiar a Scene dos jugadores");
+    public void selectDifficulty(){
+      hideAll();
+      menuDificultad.SetActive(true);
+    }
+
+    public static string getDifficulty(){
+      return difficulty;
+    }
+
+    public void difficultyEasy(){
+      difficulty = "EASY";
+      playGame();
+    }
+
+    public void difficultyMedium(){
+      difficulty = "MEDIUM";
+      playGame();
+    }
+
+    public void difficultyHard(){
+      difficulty = "HARD";
+      playGame();
     }
 }
