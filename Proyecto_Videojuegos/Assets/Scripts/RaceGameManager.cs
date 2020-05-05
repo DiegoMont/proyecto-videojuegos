@@ -6,7 +6,8 @@ using TMPro;
 public class RaceGameManager : MonoBehaviour
 {
     private CarController player;
-    private AutonomousCar ai;
+    //private AutonomousCar ai;
+    private AutonomousCar[] ais;
 
     private float StartTime;
     private float TimerControl;
@@ -23,7 +24,8 @@ public class RaceGameManager : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<CarController>();
-        ai = FindObjectOfType<AutonomousCar>();
+        //ai = FindObjectOfType<AutonomousCar>();
+        ais = FindObjectsOfType<AutonomousCar>();
         ConfigureClock();
     }
 
@@ -61,7 +63,8 @@ public class RaceGameManager : MonoBehaviour
             {
                 StartTime -= 2.7f;
                 player.CanMove = true;
-                ai.CanMove = true;
+                ais[0].CanMove = true;
+                ais[1].CanMove = true;
                 StartanimationPlayed = true;
             }   
         }
