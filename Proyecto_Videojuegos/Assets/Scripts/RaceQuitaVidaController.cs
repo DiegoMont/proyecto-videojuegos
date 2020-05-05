@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RaceQuitaVidaController : MonoBehaviour
 {
+    public GameObject sceneManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sceneManager = GameObject.FindWithTag("RaceSceneManager");
     }
 
     // Update is called once per frame
@@ -19,8 +20,17 @@ public class RaceQuitaVidaController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
          if (other.gameObject.CompareTag("RacePlayer"))
         {
-           float life = Random.Range(1.0f, 3.0f);
-        RaceHealthBarScript.health -= life;
+           float lifeToSubstract = Random.Range(1.0f, 3.0f);
+           float currentLife = RaceHealthBarScript.health;
+           if (currentLife <= 0) {
+            sceneManager.GetComponent<RaceSceneManagerController>().LoadScreenPits();
+           } else {
+                RaceHealthBarScript.health -= lifeToSubstract;
+           }
+
+
+
+        
         }
     	
     	

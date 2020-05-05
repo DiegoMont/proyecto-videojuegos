@@ -7,6 +7,7 @@ TagManager:
   - ToolZone
   - Cone
   - RacePlayer
+  - RaceSceneManager
   layers:
   - Default
   - TransparentFX
