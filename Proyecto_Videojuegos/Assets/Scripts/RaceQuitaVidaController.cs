@@ -20,8 +20,8 @@ public class RaceQuitaVidaController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
          if (other.gameObject.CompareTag("RacePlayer"))
         {
-           //float lifeToSubstract = Random.Range(1.0f, 3.0f);
-          float lifeToSubstract = Random.Range(10.0f, 20.0f);
+           float lifeToSubstract = Random.Range(1.0f, 3.0f);
+          //float lifeToSubstract = Random.Range(10.0f, 20.0f);
            float currentLife = RaceHealthBarScript.health;
            if (currentLife <= 0) {
             sceneManager.GetComponent<RaceSceneManagerController>().LoadScreenPits();
