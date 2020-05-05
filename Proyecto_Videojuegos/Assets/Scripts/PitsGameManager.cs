@@ -37,12 +37,16 @@ public class PitsGameManager : MonoBehaviour
 
     //Al inicializar el juego se asigna el tiempo límite, las vidas y reparaciones por hacer
     //FALTA ASIGNAR LOS VALORES ACORDE A DIFICULTAD MEDIANTE OBJETO DONT DESTROY ON LOAD
+    void Awake() {
+        StartTime = 90;
+        TimerControl = StartTime;
+    }
     void Start()
     {
         Objectives = 3;
         Lives = 3;
-        StartTime = 90;
-        TimerControl = StartTime;
+        //StartTime = 90;
+        //TimerControl = StartTime;
 
         player = FindObjectOfType<PitsPlayerController>();
         spawner = FindObjectOfType<PitsSpawnerController>();
