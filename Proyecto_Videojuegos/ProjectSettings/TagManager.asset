@@ -11,6 +11,7 @@ TagManager:
   - LapText
   - RacePlayer2
   - RacePlayer3
+  - Oil
   layers:
   - Default
   - TransparentFX

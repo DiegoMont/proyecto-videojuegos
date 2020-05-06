@@ -24,7 +24,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //accelerationPower = 5f;
     }
 
     void FixedUpdate() {
@@ -34,7 +34,8 @@ public class CarController : MonoBehaviour
         }
 
         else
-        {
+        {   
+
             steeringAmount = -Input.GetAxis("Horizontal");
             speed = Input.GetAxis("Vertical") * accelerationPower;
             direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
@@ -44,4 +45,24 @@ public class CarController : MonoBehaviour
             rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
         }
     }
+
+ 
+
+      void OnTriggerEnter2D(Collider2D other)
+    {
+       if(other.gameObject.CompareTag("Oil")){
+            accelerationPower = 8f;
+
+         }
+    }
+
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Oil")){
+            accelerationPower = 25f;
+
+        }
+    }
+    
 }
