@@ -13,6 +13,7 @@ TagManager:
   - RacePlayer3
   - Oil
   - RaceTire
+  - RaceTireSpawner
   layers:
   - Default
   - TransparentFX
