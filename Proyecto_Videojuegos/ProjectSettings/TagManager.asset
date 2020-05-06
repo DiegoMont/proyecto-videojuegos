@@ -14,6 +14,8 @@ TagManager:
   - Oil
   - RaceTire
   - RaceTireSpawner
+  - PeopleRight
+  - PeopleLeft
   layers:
   - Default
   - TransparentFX
