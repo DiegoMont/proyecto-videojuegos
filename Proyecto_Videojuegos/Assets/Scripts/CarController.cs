@@ -64,7 +64,7 @@ public class CarController : MonoBehaviour
 
         }
     }
-
+/*
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("PeopleLeft")){
@@ -72,5 +72,5 @@ public class CarController : MonoBehaviour
 
         }
     }
-    
+    */
 }
