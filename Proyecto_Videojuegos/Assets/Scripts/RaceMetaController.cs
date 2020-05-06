@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class RaceMetaController : MonoBehaviour
 {
     
 
-	public GameObject lap;
+	public Text lapText;
 	public int totalLaps;
 	public int currentLaps;
+    public int currentLapsP2;
+    public int currentLapsP3;
+    public bool firstP1 = false;
+    public bool firstP2 = false;
+    public bool firstP3 = false;
+
     // Start is called before the first frame update
     void Start()
     {
-    	//lap.GetComponent<Text>().text = "ok";
+    	totalLaps = 5;
+        currentLaps = 0;
+        updateLaps(currentLaps, totalLaps);
         
     }
 
@@ -22,9 +31,41 @@ public class RaceMetaController : MonoBehaviour
     {
         
     }
-/*
+
+  void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("RacePlayer")){
+            if (!firstP1) {
+                firstP1 = true;
+                return;
+            }
+            if (firstP1) {
+                currentLaps++;
+                updateLaps(currentLaps, totalLaps);
+            }
+            if (currentLaps>= totalLaps) {
+                winRace();
+            }
+            
+            
+         
+        }
+    }
+
+
+
+
     public void updateLaps(int currentLaps, int totalLaps) {
         lapText.text = currentLaps + "/" + totalLaps;
      }
-     */
+
+    public void winRace() {
+        Debug.Log("You won the race");
+        //Poner escena de carrera ganada
+    }
+
+    public void lostRace() {
+        //Poner escena de carrera perdida
+    }
+     
 }
