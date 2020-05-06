@@ -1,36 +1,31 @@
 ﻿using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
-    private static string difficulty = "MEDIUM";
 
-    public GameObject menuPerfiles;
+    private static string difficulty = "MEDIUM";
+    private static string currentPlayer = "GUEST";
     public GameObject menuJuegoYTienda;
     public GameObject menuDificultad;
 
     void hideAll(){
-      menuPerfiles.SetActive(false);
       menuJuegoYTienda.SetActive(false);
       menuDificultad.SetActive(false);
     }
 
-    void Start(){
-      hideAll();
-      selectProfile();
+    void Start() {
+        hideAll();
+        loadPlayerInfo();
+        menuJuegoYTienda.SetActive(true);
     }
 
-    public void  selectGame(){
-      hideAll();
-      menuJuegoYTienda.SetActive(true);
+    private void loadPlayerInfo() {
+
     }
 
     public void playGame(){
       SceneManager.LoadScene("Scenes/RaceScene");
-    }
-
-    public void selectProfile(){
-      hideAll();
-      menuPerfiles.SetActive(true);
     }
 
     public void selectDifficulty(){
@@ -40,6 +35,19 @@ public class MenuController : MonoBehaviour {
 
     public static string getDifficulty(){
       return difficulty;
+    }
+
+    public static string getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public static void setCurrentPlayer(string profile) {
+        if (profile == "PLAYER1")
+            currentPlayer = "PLAYER1";
+        else if (profile == "PLAYER2")
+            currentPlayer = "PLAYER2";
+        else
+            currentPlayer = "GUEST";
     }
 
     public void difficultyEasy(){
