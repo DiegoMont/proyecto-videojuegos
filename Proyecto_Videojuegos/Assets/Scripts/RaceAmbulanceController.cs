@@ -13,7 +13,7 @@ public class RaceAmbulanceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //_target = target;
     }
 
     // Update is called once per frame
@@ -21,4 +21,10 @@ public class RaceAmbulanceController : MonoBehaviour
     {
         
     }
+/*
+    void Move() {
+    	float distance = Vector3.Distance(gameObject.transform.position, _target);
+    	gameObject.transform.position = Vector3.Lerp(transform.position, _target, (Time.deltaTime*Speed)/distance);
+    }
+    */
 }
