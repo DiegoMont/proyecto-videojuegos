@@ -45,11 +45,36 @@ public class RaceMetaController : MonoBehaviour
             }
             if (currentLaps>= totalLaps) {
                 winRace();
-            }
-            
-            
-         
+            } 
         }
+
+
+        if(other.gameObject.CompareTag("RacePlayer2")){
+            if (!firstP2) {
+                firstP2 = true;
+                return;
+            }
+            if (firstP2) {
+                currentLapsP2++;
+            }
+            if (currentLapsP2 >= totalLaps) {
+                lostRace();
+            }
+        }
+
+        if(other.gameObject.CompareTag("RacePlayer3")){
+            if (!firstP3) {
+                firstP3 = true;
+                return;
+            }
+            if (firstP3) {
+                currentLapsP3++;
+            }
+            if (currentLapsP3 >= totalLaps) {
+                lostRace();
+            }
+        }
+
     }
 
 

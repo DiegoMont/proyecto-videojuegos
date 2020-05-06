@@ -9,6 +9,8 @@ TagManager:
   - RacePlayer
   - RaceSceneManager
   - LapText
+  - RacePlayer2
+  - RacePlayer3
   layers:
   - Default
   - TransparentFX
