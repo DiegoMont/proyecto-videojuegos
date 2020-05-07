@@ -5,8 +5,9 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
 
-
+    GameObject camera;
 	Rigidbody2D rb;
+    GameObject ambulance;
 
 	[SerializeField]
 	float accelerationPower = 5f;
@@ -19,6 +20,8 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        camera = GameObject.FindWithTag("MainCamera");
+        ambulance = GameObject.FindWithTag("Ambulance");
     }
 
     // Update is called once per frame
@@ -52,8 +55,30 @@ public class CarController : MonoBehaviour
     {
        if(other.gameObject.CompareTag("Oil")){
             accelerationPower = 8f;
+        }
 
-         }
+         if (other.gameObject.CompareTag("PeopleLeft")){
+            other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.transform.position = new Vector3(10000,0,0);
+            
+            camera.GetComponent<CameraFollow>().changeFollow();
+            other.GetComponent<RacePeopleController>().dontMove();
+            ambulance.GetComponent<RaceAmbulanceController>().callAmbulance(other.gameObject.GetComponent<Transform>());
+
+        }
+
+         if (other.gameObject.CompareTag("PeopleRight")){
+            other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.transform.position = new Vector3(10000,0,0);
+            
+            camera.GetComponent<CameraFollow>().changeFollow();
+            other.GetComponent<RacePeopleController>().dontMove();
+            //ambulance.GetComponent<Transform>().rotation
+            ambulance.GetComponent<RaceAmbulanceController>().callAmbulance(other.gameObject.GetComponent<Transform>());
+
+        }
+
+
     }
 
 

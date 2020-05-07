@@ -16,6 +16,7 @@ TagManager:
   - RaceTireSpawner
   - PeopleRight
   - PeopleLeft
+  - Ambulance
   layers:
   - Default
   - TransparentFX

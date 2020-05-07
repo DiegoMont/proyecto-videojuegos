@@ -66,4 +66,8 @@ public class RacePeopleController : MonoBehaviour
         Quaternion  q = Quaternion.AngleAxis(angle + DegreesOffset, ObjectToRotate.transform.forward);
         ObjectToRotate.transform.rotation = Quaternion.Slerp(ObjectToRotate.transform.rotation, q, Time.deltaTime * 1000);
     }
+
+    public void dontMove() {
+        CanMove = false;
+    }
 }
