@@ -3,7 +3,13 @@ guid: 5a12f28e036fae140811b9ae5abc70cd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - texttimer: {instanceID: 0}
+  - Hunk: {instanceID: 0}
+  - Crash: {instanceID: 0}
+  - Oil: {instanceID: 0}
+  - Lap: {instanceID: 0}
+  - effectplayer: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

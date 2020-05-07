@@ -16,12 +16,15 @@ public class CarController : MonoBehaviour
 	float steeringAmount, speed, direction;
     public bool CanMove;
 
+    private RaceGameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         camera = GameObject.FindWithTag("MainCamera");
         ambulance = GameObject.FindWithTag("Ambulance");
+        gameManager = GameObject.FindObjectOfType<RaceGameManager>();
     }
 
     // Update is called once per frame
@@ -55,6 +58,7 @@ public class CarController : MonoBehaviour
     {
        if(other.gameObject.CompareTag("Oil")){
             accelerationPower = 8f;
+            gameManager.PlaySound("Oil");
         }
 
          if (other.gameObject.CompareTag("PeopleLeft")){
@@ -91,13 +95,18 @@ public class CarController : MonoBehaviour
 
         }
     }
-/*
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.CompareTag("PeopleLeft")){
-            
 
-        }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        gameManager.PlaySound("Crash");
     }
-    */
+    /*
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if(other.gameObject.CompareTag("PeopleLeft")){
+
+
+            }
+        }
+        */
 }

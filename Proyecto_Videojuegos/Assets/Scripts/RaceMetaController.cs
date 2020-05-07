@@ -16,10 +16,12 @@ public class RaceMetaController : MonoBehaviour
     public bool firstP1 = false;
     public bool firstP2 = false;
     public bool firstP3 = false;
+    private RaceGameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindObjectOfType<RaceGameManager>();
     	totalLaps = 5;
         currentLaps = 0;
         updateLaps(currentLaps, totalLaps);
@@ -35,6 +37,7 @@ public class RaceMetaController : MonoBehaviour
   void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("RacePlayer")){
+
             if (!firstP1) {
                 firstP1 = true;
                 return;
@@ -45,7 +48,11 @@ public class RaceMetaController : MonoBehaviour
             }
             if (currentLaps>= totalLaps) {
                 winRace();
-            } 
+            }
+            if (currentLaps != 0)
+            {
+                gameManager.PlaySound("Lap");
+            }
         }
 
 

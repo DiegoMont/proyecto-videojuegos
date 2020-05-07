@@ -18,7 +18,7 @@ public class RaceGameManager : MonoBehaviour
     private string TimerString;
 
 
-    public AudioClip Hunk;
+    public AudioClip Hunk, Crash, Oil, Lap;
     public AudioSource effectplayer;
 
     void Start()
@@ -93,6 +93,16 @@ public class RaceGameManager : MonoBehaviour
             case "Hunk":
                 effectplayer.PlayOneShot(Hunk);
                 break;
+            case "Crash":
+                effectplayer.PlayOneShot(Crash);
+                break;
+            case "Lap":
+                effectplayer.PlayOneShot(Lap);
+                break;
+            case "Oil":
+                effectplayer.PlayOneShot(Oil);
+                break;
+
         }
     }
 }
