@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RaceAmbulanceController : MonoBehaviour
 {
-    
+    public GameObject sound;
 	public Transform target;
 	public Vector3 _target;
 	public float Speed;
@@ -33,6 +33,7 @@ public class RaceAmbulanceController : MonoBehaviour
     public void callAmbulance(Transform target) {
         solicited = true;
         _target = target.position;
+        Instantiate(sound, transform.position, transform.rotation);
     }
 
     void Move() {
