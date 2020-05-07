@@ -71,6 +71,8 @@ public class CarController : MonoBehaviour
             other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.transform.position = new Vector3(10000,0,0);
             
+            ambulance.GetComponent<Transform>().rotation *= Quaternion.Euler(0,180f,0);
+            
             camera.GetComponent<CameraFollow>().changeFollow();
             other.GetComponent<RacePeopleController>().dontMove();
             //ambulance.GetComponent<Transform>().rotation
