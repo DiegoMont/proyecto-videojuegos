@@ -6,6 +6,8 @@ public class MenuController : MonoBehaviour {
 
     private static string difficulty = "MEDIUM";
     private static string currentPlayer = "GUEST";
+    public TextMeshProUGUI nombreJugador;
+    public TextMeshProUGUI dineroJugador;
     public GameObject menuJuegoYTienda;
     public GameObject menuDificultad;
 
@@ -21,7 +23,12 @@ public class MenuController : MonoBehaviour {
     }
 
     private void loadPlayerInfo() {
+        nombreJugador.text = PlayerPrefs.GetString(currentPlayer+"Name", "Guest");
+        dineroJugador.text = PlayerPrefs.GetInt(currentPlayer+"Coins", 0).ToString();
+    }
 
+    public void goToProfileSelection() {
+        SceneManager.LoadScene("Scenes/Menus/Elegir Perfil");
     }
 
     public void playGame(){
