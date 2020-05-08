@@ -21,8 +21,33 @@ public class RaceGameManager : MonoBehaviour
     public AudioClip Hunk, Crash, Oil, Lap;
     public AudioSource effectplayer;
 
+    public GameObject player1;
+    public GameObject player2;
+    public GameObject player3;
+
+    //public GameOject 
+
     void Start()
     {
+
+        player1 = GameObject.FindWithTag("RacePlayer");
+        player2 = GameObject.FindWithTag("RacePlayer2");
+        player3 = GameObject.FindWithTag("RacePlayer3");
+
+        float player1X = PlayerPrefs.GetFloat("Player1PositionX");
+        float player1Y = PlayerPrefs.GetFloat("Player1PositionY");
+        player1.GetComponent<Transform>().position = new Vector3(player1X, player1Y, 0.0f);
+
+        float player2X = PlayerPrefs.GetFloat("Player2PositionX");
+        float player2Y = PlayerPrefs.GetFloat("Player2PositionY");
+        player2.GetComponent<Transform>().position = new Vector3(player2X, player2Y, 0.0f);
+
+
+        float player3X = PlayerPrefs.GetFloat("Player3PositionX");
+        float player3Y = PlayerPrefs.GetFloat("Player3PositionY");
+        player3.GetComponent<Transform>().position = new Vector3(player3X, player3Y, 0.0f);
+
+
         player = FindObjectOfType<CarController>();
         //ai = FindObjectOfType<AutonomousCar>();
         ais = FindObjectsOfType<AutonomousCar>();

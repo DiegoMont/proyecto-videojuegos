@@ -46,6 +46,17 @@ public class MenuController : MonoBehaviour {
     public void selectDifficulty(){
       hideAll();
       menuDificultad.SetActive(true);
+
+      //Guardar la posición inicial de cada jugador
+
+
+      PlayerPrefs.SetFloat("Player1PositionX", -1.69f);
+      PlayerPrefs.SetFloat("Player1PositionY", 4.02f);
+      PlayerPrefs.SetFloat("Player2PositionX", -3.93f);
+      PlayerPrefs.SetFloat("Player2PositionY", 4.03f);
+      PlayerPrefs.SetFloat("Player3PositionX", -2.6f);
+      PlayerPrefs.SetFloat("Player3PositionY", 3.19f);
+
     }
 
     public static string getDifficulty(){

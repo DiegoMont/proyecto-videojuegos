@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
 	float steeringPower = 5f;
 	float steeringAmount, speed, direction;
     public bool CanMove;
+    public int racePoints;
 
     private RaceGameManager gameManager;
 
