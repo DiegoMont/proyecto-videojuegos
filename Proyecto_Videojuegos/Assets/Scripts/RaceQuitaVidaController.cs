@@ -50,9 +50,15 @@ public class RaceQuitaVidaController : MonoBehaviour
 
       PlayerPrefs.SetFloat("Player1PositionX", player1.GetComponent<Transform>().position.x);
       PlayerPrefs.SetFloat("Player1PositionY", player1.GetComponent<Transform>().position.y);
+
       PlayerPrefs.SetFloat("Player2PositionX", player2.GetComponent<Transform>().position.x);
       PlayerPrefs.SetFloat("Player2PositionY", player2.GetComponent<Transform>().position.y);
+      PlayerPrefs.SetInt("Player2Index", player2.GetComponent<AutonomousCar>().getTargetIndex());
+
       PlayerPrefs.SetFloat("Player3PositionX", player3.GetComponent<Transform>().position.x);
       PlayerPrefs.SetFloat("Player3PositionY", player3.GetComponent<Transform>().position.y);
+      PlayerPrefs.SetInt("Player3Index", player3.GetComponent<AutonomousCar>().getTargetIndex());
+
+
     }
 }

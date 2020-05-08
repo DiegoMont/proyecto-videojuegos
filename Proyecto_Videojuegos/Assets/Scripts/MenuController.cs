@@ -44,15 +44,20 @@ public class MenuController : MonoBehaviour {
       hideAll();
       menuDificultad.SetActive(true);
 
-      //Guardar la posición inicial de cada jugador
+      //Guardar la posición inicial de cada jugador y su index
 
 
       PlayerPrefs.SetFloat("Player1PositionX", -1.69f);
       PlayerPrefs.SetFloat("Player1PositionY", 4.02f);
+
       PlayerPrefs.SetFloat("Player2PositionX", -3.93f);
       PlayerPrefs.SetFloat("Player2PositionY", 4.03f);
+      PlayerPrefs.SetInt("Player2Index", 0);
+
       PlayerPrefs.SetFloat("Player3PositionX", -2.6f);
       PlayerPrefs.SetFloat("Player3PositionY", 3.19f);
+      PlayerPrefs.SetInt("Player3Index", 0);
+
 
     }
 

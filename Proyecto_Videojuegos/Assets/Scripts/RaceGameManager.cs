@@ -29,7 +29,7 @@ public class RaceGameManager : MonoBehaviour
 
     void Start()
     {
-
+        //Asignar a cada jugador su posición, y para los autonomos, su index.
         player1 = GameObject.FindWithTag("RacePlayer");
         player2 = GameObject.FindWithTag("RacePlayer2");
         player3 = GameObject.FindWithTag("RacePlayer3");
@@ -41,11 +41,15 @@ public class RaceGameManager : MonoBehaviour
         float player2X = PlayerPrefs.GetFloat("Player2PositionX");
         float player2Y = PlayerPrefs.GetFloat("Player2PositionY");
         player2.GetComponent<Transform>().position = new Vector3(player2X, player2Y, 0.0f);
-
+        player2.GetComponent<AutonomousCar>().setTargetIndex(PlayerPrefs.GetInt("Player2Index"));
 
         float player3X = PlayerPrefs.GetFloat("Player3PositionX");
         float player3Y = PlayerPrefs.GetFloat("Player3PositionY");
         player3.GetComponent<Transform>().position = new Vector3(player3X, player3Y, 0.0f);
+        player3.GetComponent<AutonomousCar>().setTargetIndex(PlayerPrefs.GetInt("Player3Index"));
+
+
+
 
 
         player = FindObjectOfType<CarController>();

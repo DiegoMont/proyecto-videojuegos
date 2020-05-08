@@ -26,6 +26,8 @@ public class AutonomousCar : MonoBehaviour
         foreach(var target in targets){
         	_targets.Add(target.position);
         }
+        
+
         SetTarget(_targets[targetIndex]);
     }
 
@@ -67,5 +69,12 @@ public class AutonomousCar : MonoBehaviour
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x)*Mathf.Rad2Deg;
         Quaternion  q = Quaternion.AngleAxis(angle + DegreesOffset, ObjectToRotate.transform.forward);
         ObjectToRotate.transform.rotation = Quaternion.Slerp(ObjectToRotate.transform.rotation, q, Time.deltaTime * 1000);
+    }
+
+    public void setTargetIndex(int index) {
+        targetIndex = index;
+    }
+    public int getTargetIndex() {
+        return targetIndex;
     }
 }
