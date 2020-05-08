@@ -61,7 +61,7 @@ public class ProfileManager : MonoBehaviour {
         }
     }
 
-    public void goToMainMenu(string profile) {
+    public static void goToMainMenu(string profile) {
         MenuController.setCurrentPlayer(profile);
         SceneManager.LoadScene("Scenes/Menus/Jugar-Tienda");
     }

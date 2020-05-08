@@ -31,7 +31,7 @@ public class MenuController : MonoBehaviour {
         SceneManager.LoadScene("Scenes/Menus/Elegir Perfil");
     }
 
-    public void playGame(){
+    public static void playGame(){
       SceneManager.LoadScene("Scenes/RaceScene");
     }
 
