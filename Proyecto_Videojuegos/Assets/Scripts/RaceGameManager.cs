@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading;
 
 public class RaceGameManager : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class RaceGameManager : MonoBehaviour
     //private AutonomousCar ai;
     private AutonomousCar[] ais;
 
-    private float StartTime;
     private float TimerControl;
     private bool StartanimationPlayed;
     private bool StartsoundPlayed;
@@ -37,13 +37,20 @@ public class RaceGameManager : MonoBehaviour
 
     private void ConfigureClock()
     {
-        if (StartanimationPlayed == false)
+        int confirm = PlayerPrefs.GetInt("RaceBegin");
+        if (confirm == 0)
         {
-            StartTime = 0;
+            TimerControl = 0;
+            StartanimationPlayed = false;
+            PlayerPrefs.SetInt("RaceBegin", 1);
         }
         else
         {
-            //Cargar tiempo antes de entrar a los pits
+            TimerControl = PlayerPrefs.GetFloat("RaceClock");
+            StartanimationPlayed = true;
+            player.CanMove = true;
+            ais[0].CanMove = true;
+            ais[1].CanMove = true;
         }
     }
 
@@ -51,7 +58,7 @@ public class RaceGameManager : MonoBehaviour
     {
         if(StartanimationPlayed == false)
         {
-            TimerControl = (StartTime) + Time.time;
+            TimerControl += Time.deltaTime;
 
             if (StartsoundPlayed == false)
             {
@@ -59,9 +66,9 @@ public class RaceGameManager : MonoBehaviour
                 StartsoundPlayed = true;
             }
             
-            if (TimerControl > 2.7f)
+            if (TimerControl > 3.2f)
             {
-                StartTime -= 2.7f;
+                TimerControl = 0;
                 player.CanMove = true;
                 ais[0].CanMove = true;
                 ais[1].CanMove = true;
@@ -71,7 +78,7 @@ public class RaceGameManager : MonoBehaviour
 
         else
         {
-            TimerControl = (StartTime) + Time.time;
+            TimerControl += Time.deltaTime;
             string mins = ((int)TimerControl / 60).ToString("00");
             string segs = (TimerControl % 60).ToString("00");
 
@@ -84,6 +91,7 @@ public class RaceGameManager : MonoBehaviour
     public void UpdateText()
     {
         texttimer.text = TimerString;
+        PlayerPrefs.SetFloat("RaceClock", TimerControl);
     }
 
     public void PlaySound(string sound)

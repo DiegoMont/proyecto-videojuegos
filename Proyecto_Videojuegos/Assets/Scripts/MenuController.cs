@@ -8,18 +8,26 @@ public class MenuController : MonoBehaviour {
     private static string currentPlayer = "GUEST";
     public TextMeshProUGUI nombreJugador;
     public TextMeshProUGUI dineroJugador;
-    public GameObject menuJuegoYTienda;
+    public GameObject menuinicio;
     public GameObject menuDificultad;
+    public GameObject barraJugador;
+
+    public AudioClip Button;
+    public AudioSource effectplayer;
 
     void hideAll(){
-      menuJuegoYTienda.SetActive(false);
+        menuinicio.SetActive(false);
       menuDificultad.SetActive(false);
+        barraJugador.SetActive(false);
     }
 
     void Start() {
         hideAll();
         loadPlayerInfo();
-        menuJuegoYTienda.SetActive(true);
+        menuinicio.SetActive(true);
+        barraJugador.SetActive(true);
+        PlayerPrefs.SetInt("RaceBegin", 0);
+        PlayerPrefs.SetFloat("RaceClock", 0);
     }
 
     private void loadPlayerInfo() {
@@ -70,5 +78,10 @@ public class MenuController : MonoBehaviour {
     public void difficultyHard(){
       difficulty = "HARD";
       playGame();
+    }
+
+    public void playClickSound()
+    {
+        effectplayer.PlayOneShot(Button);
     }
 }

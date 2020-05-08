@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PitsGameManager : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class PitsGameManager : MonoBehaviour
 
     
     //Variables utilizadas para la medición de tiempo en cronómetro
-    private float StartTime;
     public float TimerControl;
     public bool StartTimer = false;
     private bool alerted = false;
@@ -38,8 +38,7 @@ public class PitsGameManager : MonoBehaviour
     //Al inicializar el juego se asigna el tiempo límite, las vidas y reparaciones por hacer
     //FALTA ASIGNAR LOS VALORES ACORDE A DIFICULTAD MEDIANTE OBJETO DONT DESTROY ON LOAD
     void Awake() {
-        StartTime = 90;
-        TimerControl = StartTime;
+        TimerControl = 90;
     }
     void Start()
     {
@@ -51,8 +50,8 @@ public class PitsGameManager : MonoBehaviour
         player = FindObjectOfType<PitsPlayerController>();
         spawner = FindObjectOfType<PitsSpawnerController>();
 
-        string mins = ((int)StartTime / 60).ToString("00");
-        string segs = (StartTime % 60).ToString("00");
+        string mins = ((int)TimerControl / 60).ToString("00");
+        string segs = (TimerControl % 60).ToString("00");
         TimerString = string.Format("{00}:{01}", mins, segs);
         texttimer.text = TimerString;
 
@@ -129,7 +128,7 @@ public class PitsGameManager : MonoBehaviour
     //Método que actualiza la cuenta regresiva del reloj
     private void CountDown()
     {
-        TimerControl = (StartTime + 4) - Time.time;
+        TimerControl -= Time.deltaTime;
         string mins = ((int)TimerControl / 60).ToString("00");
         string segs = (TimerControl % 60).ToString("00");
 
@@ -142,7 +141,7 @@ public class PitsGameManager : MonoBehaviour
     public void GameOver()
     {
         player.move = false;
-        Destroy(player.gameObject);
+        SceneManager.LoadScene("Scenes/Menus/Jugar-Tienda");
     }
 
     //Método que inicializa las animaciones de victoria y detiene el temporizador
@@ -156,7 +155,7 @@ public class PitsGameManager : MonoBehaviour
     //FALTA EL CAMBIO DE ESCENA
     public void WonTransition()
     {
-        Destroy(player.gameObject);
+        SceneManager.LoadScene("Scenes/RaceScene");
     }
 
     //Método que llama al método de controlador de conos para destruírlos al reparar correctamente una avería
