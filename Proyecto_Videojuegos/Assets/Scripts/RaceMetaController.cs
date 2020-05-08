@@ -17,10 +17,12 @@ public class RaceMetaController : MonoBehaviour
     public bool firstP2 = false;
     public bool firstP3 = false;
     private RaceGameManager gameManager;
+    public GameObject sceneManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        sceneManager = GameObject.FindWithTag("RaceSceneManager");
         gameManager = GameObject.FindObjectOfType<RaceGameManager>();
     	totalLaps = 5;
         currentLaps = 0;
@@ -92,12 +94,14 @@ public class RaceMetaController : MonoBehaviour
      }
 
     public void winRace() {
-        Debug.Log("You won the race");
+        //Debug.Log("You won the race");
         //Poner escena de carrera ganada
+        sceneManager.GetComponent<RaceSceneManagerController>().LoadWinnerScene();
     }
 
     public void lostRace() {
         //Poner escena de carrera perdida
+        sceneManager.GetComponent<RaceSceneManagerController>().LoadGameOverScene();
     }
      
 }

@@ -32,6 +32,11 @@ public class RaceSceneManagerController : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-
+    public void LoadWinnerScene() {
+        SceneManager.LoadScene(4);
+    }
+    public void LoadGameOverScene() {
+        SceneManager.LoadScene(5);
+    }
 
 }

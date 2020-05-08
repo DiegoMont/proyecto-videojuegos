@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/Jugar-tienda.unity
     guid: 1edbd75bb10bc4ecbb9b43d684521b34
+  - enabled: 1
+    path: Assets/Scenes/Menus/WinnerScene.unity
+    guid: 66b0deaf24e354d6ca88ddd2cda6e3e6
+  - enabled: 1
+    path: Assets/Scenes/Menus/GameOverScene.unity
+    guid: ba6ab1e0573fa46aab54558e1f4b976e
   m_configObjects: {}
