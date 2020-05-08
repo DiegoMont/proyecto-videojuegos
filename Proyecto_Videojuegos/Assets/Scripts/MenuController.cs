@@ -12,9 +12,6 @@ public class MenuController : MonoBehaviour {
     public GameObject menuDificultad;
     public GameObject barraJugador;
 
-    public AudioClip Button;
-    public AudioSource effectplayer;
-
     void hideAll(){
         menuinicio.SetActive(false);
       menuDificultad.SetActive(false);
@@ -80,8 +77,4 @@ public class MenuController : MonoBehaviour {
       playGame();
     }
 
-    public void playClickSound()
-    {
-        effectplayer.PlayOneShot(Button);
-    }
 }

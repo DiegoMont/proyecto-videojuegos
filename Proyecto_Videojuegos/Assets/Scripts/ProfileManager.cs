@@ -7,6 +7,7 @@ public class ProfileManager : MonoBehaviour {
     public TextMeshProUGUI nombrePlayer1;
     public TextMeshProUGUI nombrePlayer2;
     public TextMeshProUGUI nameInput;
+    public TextMeshProUGUI placeholder;
     public GameObject formNombre;
     private string editingPlayer;
 
@@ -25,7 +26,7 @@ public class ProfileManager : MonoBehaviour {
             goToMainMenu(editingPlayer);
         }
         else {
-            nameInput.text = "";
+            nameInput.text = " ";
             //Debug.Log(nameInput.text.Length);
         }
     }
@@ -53,6 +54,7 @@ public class ProfileManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("PLAYER2Activo", 0) == 0)
         {
             editingPlayer = "PLAYER2";
+            placeholder.text = "Player 2";
             formNombre.SetActive(true);
         }
         else
@@ -74,6 +76,8 @@ public class ProfileManager : MonoBehaviour {
     }
 
     public void resetPrefs() {
+        nombrePlayer1.text = "Player 1";
+        nombrePlayer2.text = "Player 2";
         //PlayerPrefs.DeleteAll();
         PlayerPrefs.DeleteKey("PLAYER2Name");
         PlayerPrefs.DeleteKey("PLAYER1Name");
