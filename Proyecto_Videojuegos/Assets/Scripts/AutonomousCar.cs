@@ -16,6 +16,7 @@ public class AutonomousCar : MonoBehaviour
     public GameObject ObjectToRotate;
     public float DegreesOffset = 0;
     public bool CanMove;
+    public int racePoints;
     //public Vector3 vectorToTarget;
 
 
