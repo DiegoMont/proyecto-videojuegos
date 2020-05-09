@@ -11,9 +11,12 @@ public class RaceAmbulanceController : MonoBehaviour
 	public GameObject ObjectToRotate;
     public float DegreesOffset = 0;
     public bool solicited;
-    // Start is called before the first frame update
+    public GameObject sceneManager;
+        // Start is called before the first frame update
     void Start()
     {
+
+        sceneManager = GameObject.FindWithTag("RaceSceneManager");
         solicited = false;
         //_target = target.position;
     }
@@ -39,7 +42,7 @@ public class RaceAmbulanceController : MonoBehaviour
     void Move() {
     	float distance = Vector3.Distance(gameObject.transform.position, _target);
         if (distance <= 0){
-            Debug.Log("cargar escena de perdedor");
+            sceneManager.GetComponent<RaceSceneManagerController>().LoadGameOverScene();
         }
     	gameObject.transform.position = Vector3.Lerp(transform.position, _target, (Time.deltaTime*Speed)/distance);
     }
