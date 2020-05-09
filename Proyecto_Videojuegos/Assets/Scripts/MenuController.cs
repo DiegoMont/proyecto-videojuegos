@@ -37,7 +37,8 @@ public class MenuController : MonoBehaviour {
     }
 
     public static void playGame(){
-      SceneManager.LoadScene("Scenes/RaceScene");
+        PlayerPrefs.SetInt("EarnedCoins", 0);
+        SceneManager.LoadScene("Scenes/RaceScene");
     }
 
     public void selectDifficulty(){

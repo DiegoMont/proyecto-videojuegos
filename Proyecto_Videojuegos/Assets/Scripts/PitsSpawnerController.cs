@@ -8,6 +8,7 @@ public class PitsSpawnerController : MonoBehaviour
     
     public GameObject objectToSpawn;
     public GameObject tireObject;
+    public GameObject coinObject;
 
     public void Spawn()
     {
@@ -24,6 +25,13 @@ public class PitsSpawnerController : MonoBehaviour
         System.Random random = new System.Random();
         float[] posiblesY = { 0, -1, -2, -3, -4};
         float y = posiblesY[random.Next(posiblesY.Length)];
-        //Instantiate(tireObject, new Vector3(-18f, y, 0f), Quaternion.identity);
+        Instantiate(tireObject, new Vector3(-18f, y, 0f), Quaternion.identity);
+    }
+
+    public void spawnCoin() {
+        float x = Random.Range(-5.7f, 8.5f);
+        float y = Random.Range(-4.5f, -0.3f);
+
+        Instantiate(coinObject, new Vector3(x, y, 0f), Quaternion.identity);
     }
 }

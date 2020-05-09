@@ -18,6 +18,7 @@ TagManager:
   - PeopleLeft
   - Ambulance
   - RaceMeta
+  - Coin
   layers:
   - Default
   - TransparentFX

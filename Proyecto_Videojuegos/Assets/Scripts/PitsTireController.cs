@@ -2,10 +2,10 @@
 
 public class PitsTireController : MonoBehaviour {
 
-    public float velocidad;
-
     private void Update() {
-        transform.Translate(new Vector3(velocidad, 0f, 0f));
+        transform.Translate(new Vector3(0.01f, 0f, 0f));
+        if (transform.position.x > 9)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

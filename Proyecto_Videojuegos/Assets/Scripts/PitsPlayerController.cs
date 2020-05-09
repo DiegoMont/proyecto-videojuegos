@@ -83,6 +83,15 @@ public class PitsPlayerController : MonoBehaviour
             gameManager.QuitInstructions();
         }
 
+        if (other.CompareTag("Coin"))
+        {
+            int dineroActual = PlayerPrefs.GetInt("EarnedCoins");
+            dineroActual++;
+            PlayerPrefs.SetInt("EarnedCoins", dineroActual);
+            Destroy(other.gameObject);
+            Debug.Log(dineroActual);
+        }
+
         if (other.CompareTag("Cone"))
         {
             spriteRenderer.color = Color.red;

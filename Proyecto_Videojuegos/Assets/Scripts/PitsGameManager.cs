@@ -25,7 +25,7 @@ public class PitsGameManager : MonoBehaviour
 
 
     //Variables utilizadas en asignación de elementos visuales y sonoros
-    public TextMeshProUGUI textlives, texttimer, textobjectives;
+    public TextMeshProUGUI textlives, texttimer, textobjectives, textoMonedas;
     public int Objectives;
     public int Lives;
     public string TimerString;
@@ -57,7 +57,8 @@ public class PitsGameManager : MonoBehaviour
 
         UpdateText();
 
-        InvokeRepeating("spawnTire", 0f, 3f);
+        InvokeRepeating("spawnTire", 0f, 15f);
+        InvokeRepeating("spawnCoin", 1f, 20f);
     }
 
     // Update is called once per frame
@@ -125,6 +126,7 @@ public class PitsGameManager : MonoBehaviour
         texttimer.text = TimerString;
         textobjectives.text = "x" + Objectives;
         textlives.text = "x" + Lives;
+        updateMoneditas();
     }
 
     //Método que actualiza la cuenta regresiva del reloj
@@ -202,7 +204,16 @@ public class PitsGameManager : MonoBehaviour
         }
     }
 
+    private void updateMoneditas() {
+        textoMonedas.text = PlayerPrefs.GetInt("EarnedCoins").ToString();
+    }
+
     private void spawnTire() {
         spawner.spawnTire();
     }
+
+    private void spawnCoin() {
+        spawner.spawnCoin();
+    }
+
 }
