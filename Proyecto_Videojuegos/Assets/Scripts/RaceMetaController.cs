@@ -9,6 +9,7 @@ public class RaceMetaController : MonoBehaviour
     
 
 	public Text lapText;
+    public Text placeText;
 	public int totalLaps;
 	public int currentLaps;
     public int currentLapsP2;
@@ -18,6 +19,7 @@ public class RaceMetaController : MonoBehaviour
     public bool firstP3 = false;
     private RaceGameManager gameManager;
     public GameObject sceneManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +93,10 @@ public class RaceMetaController : MonoBehaviour
 
     public void updateLaps(int currentLaps, int totalLaps) {
         lapText.text = currentLaps + "/" + totalLaps;
+     }
+
+     public void updatePlaces(string place) {
+        placeText.text = place;
      }
 
     public void winRace() {

@@ -23,6 +23,7 @@ public class AutonomousCar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         foreach(var target in targets){
         	_targets.Add(target.position);
         }
@@ -76,5 +77,11 @@ public class AutonomousCar : MonoBehaviour
     }
     public int getTargetIndex() {
         return targetIndex;
+    }
+    public void setPoints(int points) {
+        racePoints = points;
+    }
+    public int getPoints() {
+        return racePoints;
     }
 }

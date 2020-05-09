@@ -49,14 +49,19 @@ public class MenuController : MonoBehaviour {
 
       PlayerPrefs.SetFloat("Player1PositionX", -1.69f);
       PlayerPrefs.SetFloat("Player1PositionY", 4.02f);
+      PlayerPrefs.SetInt("Player1Points", 0);
 
       PlayerPrefs.SetFloat("Player2PositionX", -3.93f);
       PlayerPrefs.SetFloat("Player2PositionY", 4.03f);
       PlayerPrefs.SetInt("Player2Index", 0);
+      PlayerPrefs.SetInt("Player2Points", 0);
 
       PlayerPrefs.SetFloat("Player3PositionX", -2.6f);
       PlayerPrefs.SetFloat("Player3PositionY", 3.19f);
       PlayerPrefs.SetInt("Player3Index", 0);
+      PlayerPrefs.SetInt("Player3Points", 0);
+
+
 
 
     }

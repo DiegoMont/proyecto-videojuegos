@@ -101,13 +101,10 @@ public class CarController : MonoBehaviour
     {
         gameManager.PlaySound("Crash");
     }
-    /*
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            if(other.gameObject.CompareTag("PeopleLeft")){
-
-
-            }
-        }
-        */
+    public void setPoints(int points) {
+        racePoints = points;
+    }
+    public int getPoints() {
+        return racePoints;
+    }
 }
