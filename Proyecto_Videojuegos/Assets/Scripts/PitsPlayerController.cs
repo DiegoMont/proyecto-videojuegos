@@ -23,6 +23,9 @@ public class PitsPlayerController : MonoBehaviour
     public bool move = false;
     public bool CarExit = false;
 
+    //Varaibles para efectos de sonido
+    public AudioClip getCoinClip;
+
 
     void Start()
     {
@@ -85,6 +88,7 @@ public class PitsPlayerController : MonoBehaviour
 
         if (other.CompareTag("Coin"))
         {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(getCoinClip);
             int dineroActual = PlayerPrefs.GetInt("EarnedCoins");
             dineroActual++;
             PlayerPrefs.SetInt("EarnedCoins", dineroActual);
