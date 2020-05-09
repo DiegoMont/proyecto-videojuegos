@@ -7,6 +7,7 @@ public class PitsSpawnerController : MonoBehaviour
     //Controlador con método de Spawnear conos, se llama desde GameManager
     
     public GameObject objectToSpawn;
+    public GameObject tireObject;
 
     public void Spawn()
     {
@@ -17,5 +18,12 @@ public class PitsSpawnerController : MonoBehaviour
         gameObject.transform.position = newposition;
 
         Instantiate(objectToSpawn, gameObject.transform.position, Quaternion.identity);
+    }
+
+    public void spawnTire() {
+        System.Random random = new System.Random();
+        float[] posiblesY = { 0, -1, -2, -3, -4};
+        float y = posiblesY[random.Next(posiblesY.Length)];
+        //Instantiate(tireObject, new Vector3(-18f, y, 0f), Quaternion.identity);
     }
 }

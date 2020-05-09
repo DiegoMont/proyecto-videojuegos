@@ -56,6 +56,8 @@ public class PitsGameManager : MonoBehaviour
         texttimer.text = TimerString;
 
         UpdateText();
+
+        InvokeRepeating("spawnTire", 0f, 3f);
     }
 
     // Update is called once per frame
@@ -198,5 +200,9 @@ public class PitsGameManager : MonoBehaviour
                 effectplayer.PlayOneShot(button);
                 break;
         }
+    }
+
+    private void spawnTire() {
+        spawner.spawnTire();
     }
 }
