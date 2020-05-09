@@ -25,6 +25,8 @@ public class RaceGameManager : MonoBehaviour
     public GameObject player2;
     public GameObject player3;
 
+    public GameObject meta;
+
     //public GameOject 
 
     void Start()
@@ -33,6 +35,8 @@ public class RaceGameManager : MonoBehaviour
         player1 = GameObject.FindWithTag("RacePlayer");
         player2 = GameObject.FindWithTag("RacePlayer2");
         player3 = GameObject.FindWithTag("RacePlayer3");
+
+        meta = GameObject.FindWithTag("RaceMeta");
 
         //Player1
         float player1X = PlayerPrefs.GetFloat("Player1PositionX");
@@ -53,6 +57,12 @@ public class RaceGameManager : MonoBehaviour
         player3.GetComponent<Transform>().position = new Vector3(player3X, player3Y, 0.0f);
         player3.GetComponent<AutonomousCar>().setTargetIndex(PlayerPrefs.GetInt("Player3Index"));
         player3.GetComponent<AutonomousCar>().setPoints(PlayerPrefs.GetInt("Player3Points"));
+
+        //Set number of laps for each car
+        meta.GetComponent<RaceMetaController>().updateLaps(PlayerPrefs.GetInt("numberLaps"),5);
+        meta.GetComponent<RaceMetaController>().currentLaps = PlayerPrefs.GetInt("numberLaps");
+        meta.GetComponent<RaceMetaController>().currentLapsP2 = PlayerPrefs.GetInt("numberLapsP2");
+        meta.GetComponent<RaceMetaController>().currentLapsP3 = PlayerPrefs.GetInt("numberLapsP3");
 
 
 

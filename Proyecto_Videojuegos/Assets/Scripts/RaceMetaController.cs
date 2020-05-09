@@ -104,6 +104,9 @@ public class RaceMetaController : MonoBehaviour
         //Poner escena de carrera ganada
         
         sceneManager.GetComponent<RaceSceneManagerController>().LoadWinnerScene();
+        
+
+
         int moneditas = PlayerPrefs.GetInt(MenuController.getCurrentPlayer() + "Coins");
         moneditas += PlayerPrefs.GetInt("EarnedCoins");
         PlayerPrefs.SetInt(MenuController.getCurrentPlayer() + "Coins", moneditas);

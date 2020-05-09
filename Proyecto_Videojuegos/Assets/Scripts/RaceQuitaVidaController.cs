@@ -81,6 +81,14 @@ public class RaceQuitaVidaController : MonoBehaviour
       PlayerPrefs.SetInt("Player3Index", player3.GetComponent<AutonomousCar>().getTargetIndex());
       PlayerPrefs.SetInt("Player3Points", player3.GetComponent<AutonomousCar>().getPoints());
 
+
+      PlayerPrefs.SetInt("numberLaps", meta.GetComponent<RaceMetaController>().currentLaps);
+      PlayerPrefs.SetInt("numberLapsP2", meta.GetComponent<RaceMetaController>().currentLapsP2);
+      PlayerPrefs.SetInt("numberLapsP3", meta.GetComponent<RaceMetaController>().currentLapsP3);
+
+
+
+
     }
 
 

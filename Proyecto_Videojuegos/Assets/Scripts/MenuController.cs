@@ -62,6 +62,11 @@ public class MenuController : MonoBehaviour {
       PlayerPrefs.SetInt("Player3Index", 0);
       PlayerPrefs.SetInt("Player3Points", 0);
 
+      PlayerPrefs.SetInt("numberLaps", 0);
+      PlayerPrefs.SetInt("numberLapsP2", 0);
+      PlayerPrefs.SetInt("numberLapsP3", 0);
+
+
 
 
 
