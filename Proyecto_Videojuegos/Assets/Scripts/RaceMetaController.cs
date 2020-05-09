@@ -102,7 +102,11 @@ public class RaceMetaController : MonoBehaviour
     public void winRace() {
         //Debug.Log("You won the race");
         //Poner escena de carrera ganada
+        
         sceneManager.GetComponent<RaceSceneManagerController>().LoadWinnerScene();
+        int moneditas = PlayerPrefs.GetInt(MenuController.getCurrentPlayer() + "Coins");
+        moneditas += PlayerPrefs.GetInt("EarnedCoins");
+        PlayerPrefs.SetInt(MenuController.getCurrentPlayer() + "Coins", moneditas);
     }
 
     public void lostRace() {
