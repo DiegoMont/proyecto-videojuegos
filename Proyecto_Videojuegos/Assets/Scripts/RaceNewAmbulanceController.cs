@@ -73,19 +73,30 @@ public class RaceNewAmbulanceController : MonoBehaviour
 
         if (s == "Ruta1") {
         	GameObject[] rutas1 = GameObject.FindGameObjectsWithTag("AR1");
-        	GameObject[] rutas11 = flipTargets(rutas1);
+
+
+        	GameObject[] rutas11 = new GameObject[rutas1.Length];
+            rutas11 = orderTargets(rutas1);
+
+
+            
         	targets = new Transform[rutas11.Length];
         	lastTarget = rutas11[rutas11.Length-1];
         	for (int i = rutas11.Length-1; i >= 0; i--) {
             	targets[i] = rutas11[i].GetComponent<Transform>();
             	
         	}
+            
         	
         }
 
         if (s == "Ruta2") {
         	GameObject[] rutas2 = GameObject.FindGameObjectsWithTag("AR2");
-        	GameObject[] rutas22 = flipTargets(rutas2);
+
+        	GameObject[] rutas22 = new GameObject[rutas2.Length];
+            rutas22 = orderTargets(rutas2);
+
+
         	targets = new Transform[rutas22.Length];
         	lastTarget = rutas22[rutas22.Length-1];
         	for (int i = rutas22.Length-1; i >= 0; i--) {
@@ -97,7 +108,10 @@ public class RaceNewAmbulanceController : MonoBehaviour
 
         if (s == "Ruta3") {
         	GameObject[] rutas3 = GameObject.FindGameObjectsWithTag("AR3");
-        	GameObject[] rutas33 = flipTargets(rutas3);
+
+        	GameObject[] rutas33 = new GameObject[rutas3.Length];
+            rutas33 = orderTargets(rutas3);
+
         	targets = new Transform[rutas33.Length];
         	lastTarget = rutas33[rutas33.Length-1];
         	for (int i = rutas33.Length-1; i >= 0; i--) {
@@ -142,6 +156,18 @@ public class RaceNewAmbulanceController : MonoBehaviour
     		//Debug.Log("Sameposition");
     		sceneManager.GetComponent<RaceSceneManagerController>().LoadGameOverScene();
     	}
+    }
+
+    public GameObject[] orderTargets(GameObject[] rutas1) {
+        GameObject[] orderedTargets = new GameObject[rutas1.Length];
+        foreach (GameObject ruta in rutas1) {
+            string name = ruta.name;
+            int number = Int32.Parse(name.Substring(4));
+            //Debug.Log(number);
+            orderedTargets[number-1] = ruta; 
+        }
+
+        return orderedTargets;
     }
 
     //Cuando llegue
