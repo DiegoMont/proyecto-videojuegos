@@ -23,6 +23,8 @@ TagManager:
   - Ruta2
   - Ruta3
   - AR1
+  - AR2
+  - AR3
   layers:
   - Default
   - TransparentFX

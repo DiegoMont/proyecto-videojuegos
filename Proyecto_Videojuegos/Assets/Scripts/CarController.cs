@@ -19,6 +19,9 @@ public class CarController : MonoBehaviour
 
     private RaceGameManager gameManager;
 
+    public GameObject player2;
+    public GameObject player3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,8 @@ public class CarController : MonoBehaviour
         camera = GameObject.FindWithTag("MainCamera");
         ambulance = GameObject.FindWithTag("Ambulance");
         gameManager = GameObject.FindObjectOfType<RaceGameManager>();
+        player2 = GameObject.FindWithTag("RacePlayer2");
+        player3 = GameObject.FindWithTag("RacePlayer3");
     }
 
     // Update is called once per frame
@@ -62,6 +67,8 @@ public class CarController : MonoBehaviour
             gameManager.PlaySound("Oil");
         }
 
+        /*
+
          if (other.gameObject.CompareTag("PeopleLeft")){
             other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.transform.position = new Vector3(10000,0,0);
@@ -71,10 +78,14 @@ public class CarController : MonoBehaviour
             ambulance.GetComponent<RaceAmbulanceController>().callAmbulance(other.gameObject.GetComponent<Transform>());
 
         }
+        */
 
          if (other.gameObject.CompareTag("Ruta1")){
             other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.transform.position = new Vector3(10000,0,0);
+            player2.transform.position = new Vector3(10000,0,0);
+            player3.transform.position = new Vector3(10000,0,0);
+
             
             //ambulance.GetComponent<Transform>().rotation *= Quaternion.Euler(0,180f,0);
             
@@ -84,6 +95,38 @@ public class CarController : MonoBehaviour
             ambulance.GetComponent<RaceNewAmbulanceController>().callAmbulance("Ruta1");
 
         }
+
+        if (other.gameObject.CompareTag("Ruta2")){
+            other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.transform.position = new Vector3(10000,0,0);
+            player2.transform.position = new Vector3(10000,0,0);
+            player3.transform.position = new Vector3(10000,0,0);
+            
+            //ambulance.GetComponent<Transform>().rotation *= Quaternion.Euler(0,180f,0);
+            
+            camera.GetComponent<CameraFollow>().changeFollow();
+            other.GetComponent<RacePeopleController>().dontMove();
+           
+            ambulance.GetComponent<RaceNewAmbulanceController>().callAmbulance("Ruta2");
+
+        }
+
+        if (other.gameObject.CompareTag("Ruta3")){
+            other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.transform.position = new Vector3(10000,0,0);
+            player2.transform.position = new Vector3(10000,0,0);
+            player3.transform.position = new Vector3(10000,0,0);
+            
+            //ambulance.GetComponent<Transform>().rotation *= Quaternion.Euler(0,180f,0);
+            
+            camera.GetComponent<CameraFollow>().changeFollow();
+            other.GetComponent<RacePeopleController>().dontMove();
+           
+            ambulance.GetComponent<RaceNewAmbulanceController>().callAmbulance("Ruta3");
+
+        }
+
+
 
 
     }

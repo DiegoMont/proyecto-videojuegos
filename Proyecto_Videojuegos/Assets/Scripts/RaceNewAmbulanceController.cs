@@ -20,6 +20,8 @@ public class RaceNewAmbulanceController : MonoBehaviour
 
     public bool solicited;
     public GameObject sceneManager;
+
+    public GameObject lastTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,8 @@ public class RaceNewAmbulanceController : MonoBehaviour
         }
         if (solicited) {
             Move();
-            Rotate();  
+            Rotate();
+            CheckFinished();  
         }
     }
 
@@ -72,12 +75,44 @@ public class RaceNewAmbulanceController : MonoBehaviour
         	GameObject[] rutas1 = GameObject.FindGameObjectsWithTag("AR1");
         	GameObject[] rutas11 = flipTargets(rutas1);
         	targets = new Transform[rutas11.Length];
+        	lastTarget = rutas11[rutas11.Length-1];
         	for (int i = rutas11.Length-1; i >= 0; i--) {
             	targets[i] = rutas11[i].GetComponent<Transform>();
             	
         	}
-        	//SetTarget(_targets[targetIndex]);
+        	
         }
+
+        if (s == "Ruta2") {
+        	GameObject[] rutas2 = GameObject.FindGameObjectsWithTag("AR2");
+        	GameObject[] rutas22 = flipTargets(rutas2);
+        	targets = new Transform[rutas22.Length];
+        	lastTarget = rutas22[rutas22.Length-1];
+        	for (int i = rutas22.Length-1; i >= 0; i--) {
+            	targets[i] = rutas22[i].GetComponent<Transform>();
+            	
+        	}
+        	
+        }
+
+        if (s == "Ruta3") {
+        	GameObject[] rutas3 = GameObject.FindGameObjectsWithTag("AR3");
+        	GameObject[] rutas33 = flipTargets(rutas3);
+        	targets = new Transform[rutas33.Length];
+        	lastTarget = rutas33[rutas33.Length-1];
+        	for (int i = rutas33.Length-1; i >= 0; i--) {
+            	targets[i] = rutas33[i].GetComponent<Transform>();
+            	
+        	}
+        	
+        }
+
+
+
+
+
+
+
 
         foreach(var target in targets){
         	_targets.Add(target.position);
@@ -100,6 +135,13 @@ public class RaceNewAmbulanceController : MonoBehaviour
 		}
 
 		return rutas1;
+    }
+
+    public void CheckFinished() {
+    	if (transform.position.x == lastTarget.transform.position.x && transform.position.y == lastTarget.transform.position.y) {
+    		//Debug.Log("Sameposition");
+    		sceneManager.GetComponent<RaceSceneManagerController>().LoadGameOverScene();
+    	}
     }
 
     //Cuando llegue
