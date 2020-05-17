@@ -19,6 +19,10 @@ TagManager:
   - Ambulance
   - RaceMeta
   - Coin
+  - Ruta1
+  - Ruta2
+  - Ruta3
+  - AR1
   layers:
   - Default
   - TransparentFX
