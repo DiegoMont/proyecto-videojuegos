@@ -42,10 +42,11 @@ public class MenuController : MonoBehaviour {
     }
 
     public void selectDifficulty(){
+
       hideAll();
       menuDificultad.SetActive(true);
 
-      //Guardar la posición inicial de cada jugador y su index
+      //Guardar la posición inicial de cada jugador y su index pista 1
 
 
       PlayerPrefs.SetFloat("Player1PositionX", -1.69f);
@@ -91,16 +92,19 @@ public class MenuController : MonoBehaviour {
 
     public void difficultyEasy(){
       difficulty = "EASY";
+      PlayerPrefs.SetString("Difficulty", difficulty);
       playGame();
     }
 
     public void difficultyMedium(){
       difficulty = "MEDIUM";
+      PlayerPrefs.SetString("Difficulty", difficulty);
       playGame();
     }
 
     public void difficultyHard(){
       difficulty = "HARD";
+      PlayerPrefs.SetString("Difficulty", difficulty);
       playGame();
     }
 

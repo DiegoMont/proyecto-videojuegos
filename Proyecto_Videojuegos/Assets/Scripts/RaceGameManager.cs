@@ -84,8 +84,8 @@ public class RaceGameManager : MonoBehaviour
 
     private void ConfigureClock()
     {
-        //int confirm = PlayerPrefs.GetInt("RaceBegin");
-       int confirm = 0;
+        int confirm = PlayerPrefs.GetInt("RaceBegin");
+       
         if (confirm == 0)
         {
             TimerControl = 0;

@@ -159,7 +159,18 @@ public class PitsGameManager : MonoBehaviour
     //FALTA EL CAMBIO DE ESCENA
     public void WonTransition()
     {
-        SceneManager.LoadScene("Scenes/RaceScene");
+        //jalar player prefs
+        //Descomentar esto
+        //pistaToPlay = PlayerPrefs.GetString("pistaToPlay");
+        string pistaToPlay = "Pista2";
+        if (pistaToPlay == "Pista1") {
+            SceneManager.LoadScene("Scenes/RaceScene");
+        } else {
+            SceneManager.LoadScene("Scenes/RaceScene2");
+        }
+
+
+        
     }
 
     //Método que llama al método de controlador de conos para destruírlos al reparar correctamente una avería
