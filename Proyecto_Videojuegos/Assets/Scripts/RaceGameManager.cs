@@ -60,20 +60,20 @@ public class RaceGameManager : MonoBehaviour
         //Player1
         float player1X = PlayerPrefs.GetFloat("Player1PositionX");
         float player1Y = PlayerPrefs.GetFloat("Player1PositionY");
-        //player1.GetComponent<Transform>().position = new Vector3(player1X, player1Y, 0.0f);
+        player1.GetComponent<Transform>().position = new Vector3(player1X, player1Y, 0.0f);
         player1.GetComponent<CarController>().setPoints(PlayerPrefs.GetInt("Player1Points"));
 
         //Player2
         float player2X = PlayerPrefs.GetFloat("Player2PositionX");
         float player2Y = PlayerPrefs.GetFloat("Player2PositionY");
-        //player2.GetComponent<Transform>().position = new Vector3(player2X, player2Y, 0.0f);
+        player2.GetComponent<Transform>().position = new Vector3(player2X, player2Y, 0.0f);
         player2.GetComponent<AutonomousCar>().setTargetIndex(PlayerPrefs.GetInt("Player2Index"));
         player2.GetComponent<AutonomousCar>().setPoints(PlayerPrefs.GetInt("Player2Points"));
 
         //Player3
         float player3X = PlayerPrefs.GetFloat("Player3PositionX");
         float player3Y = PlayerPrefs.GetFloat("Player3PositionY");
-        //player3.GetComponent<Transform>().position = new Vector3(player3X, player3Y, 0.0f);
+        player3.GetComponent<Transform>().position = new Vector3(player3X, player3Y, 0.0f);
         player3.GetComponent<AutonomousCar>().setTargetIndex(PlayerPrefs.GetInt("Player3Index"));
         player3.GetComponent<AutonomousCar>().setPoints(PlayerPrefs.GetInt("Player3Points"));
 

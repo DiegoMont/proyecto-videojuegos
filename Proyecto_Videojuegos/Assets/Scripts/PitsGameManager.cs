@@ -42,7 +42,8 @@ public class PitsGameManager : MonoBehaviour
     }
     void Start()
     {
-        Objectives = 3;
+        //Objectives = 3;
+        Objectives = 1;
         Lives = 3;
         //StartTime = 90;
         //TimerControl = StartTime;
@@ -159,10 +160,9 @@ public class PitsGameManager : MonoBehaviour
     //FALTA EL CAMBIO DE ESCENA
     public void WonTransition()
     {
-        //jalar player prefs
-        //Descomentar esto
-        //pistaToPlay = PlayerPrefs.GetString("pistaToPlay");
-        string pistaToPlay = "Pista2";
+        
+        string pistaToPlay = PlayerPrefs.GetString("pistaToPlay");
+        
         if (pistaToPlay == "Pista1") {
             SceneManager.LoadScene("Scenes/RaceScene");
         } else {

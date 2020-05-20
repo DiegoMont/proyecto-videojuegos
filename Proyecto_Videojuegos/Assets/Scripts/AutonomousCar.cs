@@ -74,6 +74,8 @@ public class AutonomousCar : MonoBehaviour
 
     public void setTargetIndex(int index) {
         targetIndex = index;
+        SetTarget(_targets[targetIndex]);
+
     }
     public int getTargetIndex() {
         return targetIndex;

@@ -34,8 +34,8 @@ public class RaceQuitaVidaController : MonoBehaviour
           pointsP1++;
           player1.GetComponent<CarController>().setPoints(pointsP1);
           checkPlaces();
-          float lifeToSubstract = Random.Range(1.0f, 3.0f);
-          //float lifeToSubstract = Random.Range(10.0f, 20.0f);
+          //float lifeToSubstract = Random.Range(1.0f, 3.0f);
+          float lifeToSubstract = Random.Range(10.0f, 20.0f);
            float currentLife = RaceHealthBarScript.health;
            if (currentLife <= 0) {
             savePositions();
