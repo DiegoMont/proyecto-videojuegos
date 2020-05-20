@@ -176,14 +176,12 @@ public class PitsGameManager : MonoBehaviour
     //Método que llama al método de controlador de conos para destruírlos al reparar correctamente una avería
     public void DestroyCones()
     {
-        PitsConeController[] cones = FindObjectsOfType<PitsConeController>();
-        if (cones != null)
-        {
-            for(int i = 0; i < cones.Length; i++)
-            {
-                cones[i].DestroyCone();
-            }
+        //PitsConeController[] cones = FindObjectsOfType<PitsConeController>();
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Cone");
+        foreach (GameObject obstacle in obstacles) {
+            Destroy(obstacle);
         }
+
     }
 
     //Método que permite la reproducción de los sonidos del juego
