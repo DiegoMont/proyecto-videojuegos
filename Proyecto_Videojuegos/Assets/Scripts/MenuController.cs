@@ -11,11 +11,13 @@ public class MenuController : MonoBehaviour {
     public GameObject menuinicio;
     public GameObject menuDificultad;
     public GameObject barraJugador;
+    public GameObject menuMapa;
 
     void hideAll(){
         menuinicio.SetActive(false);
       menuDificultad.SetActive(false);
         barraJugador.SetActive(false);
+        menuMapa.SetActive(false);
     }
 
     void Start() {
@@ -36,9 +38,27 @@ public class MenuController : MonoBehaviour {
         SceneManager.LoadScene("Scenes/Menus/Elegir Perfil");
     }
 
-    public static void playGame(){
+    public static void playGame()
+    {
         PlayerPrefs.SetInt("EarnedCoins", 0);
+    }
+
+    public void playMap1()
+    {
+        playGame();
         SceneManager.LoadScene("Scenes/RaceScene");
+    }
+
+    public void playMap2()
+    {
+        playGame();
+        SceneManager.LoadScene("Scenes/RaceScene");
+    }
+
+    public void selectMap()
+    {
+        hideAll();
+        menuMapa.SetActive(true);
     }
 
     public void selectDifficulty(){
@@ -93,19 +113,19 @@ public class MenuController : MonoBehaviour {
     public void difficultyEasy(){
       difficulty = "EASY";
       PlayerPrefs.SetString("Difficulty", difficulty);
-      playGame();
+      selectMap();
     }
 
     public void difficultyMedium(){
       difficulty = "MEDIUM";
       PlayerPrefs.SetString("Difficulty", difficulty);
-      playGame();
+      selectMap();
     }
 
     public void difficultyHard(){
       difficulty = "HARD";
       PlayerPrefs.SetString("Difficulty", difficulty);
-      playGame();
+      selectMap();
     }
 
 }
