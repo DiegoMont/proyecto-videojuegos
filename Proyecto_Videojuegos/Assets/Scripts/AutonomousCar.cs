@@ -84,4 +84,7 @@ public class AutonomousCar : MonoBehaviour
     public int getPoints() {
         return racePoints;
     }
+    public void setSpeed(float speedy) {
+        Speed = speedy;
+    }
 }

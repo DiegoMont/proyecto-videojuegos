@@ -36,7 +36,24 @@ public class RaceGameManager : MonoBehaviour
         player2 = GameObject.FindWithTag("RacePlayer2");
         player3 = GameObject.FindWithTag("RacePlayer3");
 
-        //player = player1.GetComponent<CarController>();
+        //Asignar velocidad según la dificultad
+        string difficulty = PlayerPrefs.GetString("Difficulty");
+        switch(difficulty) {
+            case "EASY":
+                player2.GetComponent<AutonomousCar>().setSpeed(2f);
+                player3.GetComponent<AutonomousCar>().setSpeed(3.5f);
+                break;
+            case "MEDIUM":
+                player2.GetComponent<AutonomousCar>().setSpeed(3f);
+                player3.GetComponent<AutonomousCar>().setSpeed(4.5f);
+                break;
+            case "HARD":
+                player2.GetComponent<AutonomousCar>().setSpeed(4.5f);
+                player3.GetComponent<AutonomousCar>().setSpeed(6f); //6
+                break;
+        }
+
+        
 
         meta = GameObject.FindWithTag("RaceMeta");
 
@@ -71,7 +88,7 @@ public class RaceGameManager : MonoBehaviour
 
 
         player = FindObjectOfType<CarController>();
-        //ai = FindObjectOfType<AutonomousCar>();
+        
         ais = FindObjectsOfType<AutonomousCar>();
         ConfigureClock();
     }
