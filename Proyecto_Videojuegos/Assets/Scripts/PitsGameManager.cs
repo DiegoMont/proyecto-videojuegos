@@ -9,15 +9,21 @@ public class PitsGameManager : MonoBehaviour
     //Controladores a los que se tiene acceso
     private PitsPlayerController player;
     private PitsSpawnerController spawner;
-    
+
 
     //Variables para animaciones de victoria e inicio de juego
     public bool playerCanMove = false;
     public bool showInstructions = true;
     public bool win = false;
     public bool loose = false;
+    private bool spawninit = false;
 
-    
+    //Variables para la asignación de dificultad
+    private float conefreq;
+    private float tirefreq;
+    private float coinfreq;
+
+
     //Variables utilizadas para la medición de tiempo en cronómetro
     public float TimerControl;
     public bool StartTimer = false;
@@ -38,15 +44,34 @@ public class PitsGameManager : MonoBehaviour
     //Al inicializar el juego se asigna el tiempo límite, las vidas y reparaciones por hacer
     //FALTA ASIGNAR LOS VALORES ACORDE A DIFICULTAD MEDIANTE OBJETO DONT DESTROY ON LOAD
     void Awake() {
+        string difficulty = PlayerPrefs.GetString("Difficulty");
+        switch (difficulty)
+        {
+            case "EASY":
+                tirefreq = 10f;
+                coinfreq = 10;
+                conefreq = 7f;
+                Objectives = 1;
+                break;
+            case "MEDIUM":
+                tirefreq = 8f;
+                coinfreq = 8f;
+                conefreq = 5f;
+                Objectives = 3;
+                break;
+            case "HARD":
+                tirefreq = 6f;
+                coinfreq = 6f;
+                conefreq = 3f;
+                Objectives = 5;
+                break;
+        }
+
         TimerControl = 90;
     }
     void Start()
     {
-        //Objectives = 3;
-        Objectives = 1;
         Lives = 3;
-        //StartTime = 90;
-        //TimerControl = StartTime;
 
         player = FindObjectOfType<PitsPlayerController>();
         spawner = FindObjectOfType<PitsSpawnerController>();
@@ -57,42 +82,42 @@ public class PitsGameManager : MonoBehaviour
         texttimer.text = TimerString;
 
         UpdateText();
-
-        InvokeRepeating("spawnTire", 0f, 15f);
-        InvokeRepeating("spawnCoin", 1f, 20f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Objectives == 0 && win==false)
+        if (Objectives == 0 && win == false)
         {
             StartTimer = false;
             GameWon();
         }
 
-        if(StartTimer == true) 
-        { 
+        if (StartTimer == true)
+        {
             CountDown();
         }
 
-        if(TimerControl <= 0)
+        if (TimerControl <= 0)
         {
             StartTimer = false;
             GameOver();
         }
 
-        if(Lives == 0)
+        if (Lives == 0)
         {
             GameOver();
         }
 
-        if(StartTimer == true && TimerControl > 0.5 && TimerControl % 5 < 0.01)
+        if (StartTimer == true && TimerControl > 0.5 && spawninit == false)
         {
-            spawner.Spawn();
+            spawninit = true;
+            InvokeRepeating("spawnTire", 1f, tirefreq);
+            InvokeRepeating("spawnCoin", 1f, coinfreq);
+            InvokeRepeating("spawnCone", 1f, conefreq);
         }
 
-        if(TimerControl < 15 && alerted == false)
+        if (TimerControl < 15 && alerted == false)
         {
             PlaySound("tiktak");
             alerted = true;
@@ -108,7 +133,7 @@ public class PitsGameManager : MonoBehaviour
     //Método que destruye las indicaciones de elecctión de herramientas al acceder al menú por primera vez
     public void QuitInstructions()
     {
-        if(showInstructions == true)
+        if (showInstructions == true)
         {
             Destroy(instructionsview);
             showInstructions = false;
@@ -146,7 +171,7 @@ public class PitsGameManager : MonoBehaviour
     public void GameOver()
     {
         player.move = false;
-        SceneManager.LoadScene("Scenes/Menus/Jugar-Tienda");
+        SceneManager.LoadScene("Scenes/Menus/GameOverScene");
     }
 
     //Método que inicializa las animaciones de victoria y detiene el temporizador
@@ -154,15 +179,16 @@ public class PitsGameManager : MonoBehaviour
     {
         player.move = false;
         win = true;
+        CancelInvoke();
     }
 
     //Método que regresa a la escena de carreras con vida del carro al máximo
     //FALTA EL CAMBIO DE ESCENA
     public void WonTransition()
     {
-        
+
         string pistaToPlay = PlayerPrefs.GetString("pistaToPlay");
-        
+
         if (pistaToPlay == "Pista1") {
             SceneManager.LoadScene("Scenes/RaceScene");
         } else {
@@ -170,7 +196,7 @@ public class PitsGameManager : MonoBehaviour
         }
 
 
-        
+
     }
 
     //Método que llama al método de controlador de conos para destruírlos al reparar correctamente una avería
@@ -188,7 +214,7 @@ public class PitsGameManager : MonoBehaviour
     public void PlaySound(string sound)
     {
         //screw, nut, harm, tiktak, carenter, carexit, button;
-        switch (sound){
+        switch (sound) {
             case "screw":
                 effectplayer.PlayOneShot(screw);
                 break;
@@ -223,6 +249,11 @@ public class PitsGameManager : MonoBehaviour
 
     private void spawnCoin() {
         spawner.spawnCoin();
+    }
+
+    private void spawnCone()
+    {
+        spawner.Spawn();
     }
 
 }

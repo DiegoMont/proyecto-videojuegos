@@ -25,7 +25,7 @@ public class PitsSpawnerController : MonoBehaviour
         System.Random random = new System.Random();
         float[] posiblesY = { 0, -1, -2, -3, -4};
         float y = posiblesY[random.Next(posiblesY.Length)];
-        Instantiate(tireObject, new Vector3(-18f, y, 0f), Quaternion.identity);
+        Instantiate(tireObject, new Vector3(-14f, y, 0f), Quaternion.identity);
     }
 
     public void spawnCoin() {
