@@ -74,6 +74,7 @@ public class AutonomousCar : MonoBehaviour
 
     public void setTargetIndex(int index) {
         targetIndex = index;
+        
         foreach(var target in targets){
             _targets.Add(target.position);
         }
