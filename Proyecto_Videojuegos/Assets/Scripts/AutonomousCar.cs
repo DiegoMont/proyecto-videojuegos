@@ -23,7 +23,7 @@ public class AutonomousCar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _targets.Clear();
         foreach(var target in targets){
         	_targets.Add(target.position);
         }
@@ -74,6 +74,9 @@ public class AutonomousCar : MonoBehaviour
 
     public void setTargetIndex(int index) {
         targetIndex = index;
+
+        _targets.Clear();
+
         foreach(var target in targets){
             _targets.Add(target.position);
         }
