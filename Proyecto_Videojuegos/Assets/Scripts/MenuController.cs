@@ -12,12 +12,16 @@ public class MenuController : MonoBehaviour {
     public GameObject menuDificultad;
     public GameObject barraJugador;
     public GameObject menuMapa;
+    public GameObject tienda;
+    public GameObject items;
 
     void hideAll(){
         menuinicio.SetActive(false);
-      menuDificultad.SetActive(false);
+        menuDificultad.SetActive(false);
         barraJugador.SetActive(false);
         menuMapa.SetActive(false);
+        tienda.SetActive(false);
+        items.SetActive(false);
     }
 
     void Start() {
@@ -104,13 +108,6 @@ public class MenuController : MonoBehaviour {
 
       hideAll();
       menuDificultad.SetActive(true);
-
-      
-
-
-
-
-
     }
 
     public static string getDifficulty(){
@@ -146,6 +143,20 @@ public class MenuController : MonoBehaviour {
       difficulty = "HARD";
       PlayerPrefs.SetString("Difficulty", difficulty);
       selectMap();
+    }
+
+    public void OpenStore()
+    {
+        hideAll();
+        tienda.SetActive(true);
+        barraJugador.SetActive(true);
+    }
+
+    public void BacktoStart()
+    {
+        hideAll();
+        menuinicio.SetActive(true);
+        barraJugador.SetActive(true);
     }
 
 }
