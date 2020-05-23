@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Metalico
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 0.52156866, g: 0.56078434, b: 0.6509804, a: 1}
-  topRight: {r: 0.52156866, g: 0.56078434, b: 0.6509804, a: 1}
-  bottomLeft: {r: 0.90588236, g: 0.9137255, b: 0.9372549, a: 1}
+  topLeft: {r: 0.5407618, g: 0.5622003, b: 0.5849056, a: 1}
+  topRight: {r: 0.5573157, g: 0.5656763, b: 0.5849056, a: 1}
+  bottomLeft: {r: 0.76940197, g: 0.7916741, b: 0.8584906, a: 1}
   bottomRight: {r: 0.90588236, g: 0.9137255, b: 0.9372549, a: 1}
