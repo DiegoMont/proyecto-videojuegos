@@ -152,6 +152,13 @@ public class MenuController : MonoBehaviour {
         barraJugador.SetActive(true);
     }
 
+    public void OpenItems()
+    {
+        hideAll();
+        items.SetActive(true);
+        barraJugador.SetActive(true);
+    }
+
     public void BacktoStart()
     {
         hideAll();
