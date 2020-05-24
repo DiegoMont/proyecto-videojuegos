@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour {
 
     private static string difficulty = "MEDIUM";
-    private static string currentPlayer = "GUEST";
+    public static string currentPlayer = "GUEST";
     public TextMeshProUGUI nombreJugador;
     public TextMeshProUGUI dineroJugador;
     public GameObject menuinicio;
@@ -128,6 +128,7 @@ public class MenuController : MonoBehaviour {
     }
 
     public static string getCurrentPlayer() {
+
         return currentPlayer;
     }
 

@@ -22,7 +22,12 @@ public class CarController : MonoBehaviour
     public GameObject player2;
     public GameObject player3;
 
-    // Start is called before the first frame update
+    //Habilidades de la tienda
+    public int tribuneGuard;
+    public int rainTire;
+    public int immunity;
+    public string currentPlayer;
+  
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +36,18 @@ public class CarController : MonoBehaviour
         gameManager = GameObject.FindObjectOfType<RaceGameManager>();
         player2 = GameObject.FindWithTag("RacePlayer2");
         player3 = GameObject.FindWithTag("RacePlayer3");
+
+        currentPlayer = MenuController.currentPlayer;
+
+
+        tribuneGuard = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive3");
+        if (tribuneGuard==1) {
+            activateTribuneGuard();
+        }
+
+        rainTire = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive4");
+        immunity = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive5");
+        
     }
 
     // Update is called once per frame
@@ -63,8 +80,11 @@ public class CarController : MonoBehaviour
       void OnTriggerEnter2D(Collider2D other)
     {
        if(other.gameObject.CompareTag("Oil")){
-            accelerationPower = 8f;
-            gameManager.PlaySound("Oil");
+            if(rainTire != 1) {
+                accelerationPower = 8f;
+                gameManager.PlaySound("Oil");
+            }
+            
         }
 
         /*
@@ -149,5 +169,21 @@ public class CarController : MonoBehaviour
     }
     public int getPoints() {
         return racePoints;
+    }
+    public void activateTribuneGuard() {
+        GameObject[] ruta1 = GameObject.FindGameObjectsWithTag("Ruta1");
+        GameObject[] ruta2 = GameObject.FindGameObjectsWithTag("Ruta2");
+        GameObject[] ruta3 = GameObject.FindGameObjectsWithTag("Ruta3");
+
+        foreach (GameObject ruta in ruta1) {
+            ruta.SetActive(false);
+        }
+        foreach (GameObject ruta in ruta2) {
+            ruta.SetActive(false);
+        }
+        foreach (GameObject ruta in ruta3) {
+            ruta.SetActive(false);
+        }
+
     }
 }
