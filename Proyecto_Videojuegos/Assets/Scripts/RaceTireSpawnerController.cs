@@ -6,10 +6,13 @@ public class RaceTireSpawnerController : MonoBehaviour
 {
  
 	public GameObject tire;
+    public GameObject tire2;
+    public static int inmunidad;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
 
@@ -20,7 +23,14 @@ public class RaceTireSpawnerController : MonoBehaviour
     }
 
     public void spawnTire() {
-    	Vector3 position = gameObject.transform.position;
-    	Instantiate(tire, position, Quaternion.identity);
+        Debug.Log(inmunidad);
+        if (inmunidad != 1) {
+            Vector3 position = gameObject.transform.position;
+            Instantiate(tire, position, Quaternion.identity);
+        } if (inmunidad == 1) {
+            Vector3 position = gameObject.transform.position;
+            Instantiate(tire2, position, Quaternion.identity);
+        }
+    	
     }
 }

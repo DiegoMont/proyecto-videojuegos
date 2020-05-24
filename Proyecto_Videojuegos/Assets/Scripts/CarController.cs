@@ -25,7 +25,7 @@ public class CarController : MonoBehaviour
     //Habilidades de la tienda
     public int tribuneGuard;
     public int rainTire;
-    public int immunity;
+    public static int immunity;
     public string currentPlayer;
   
     void Start()
@@ -47,6 +47,7 @@ public class CarController : MonoBehaviour
 
         rainTire = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive4");
         immunity = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive5");
+        RaceTireSpawnerController.inmunidad = immunity;
         
     }
 
