@@ -78,7 +78,7 @@ public class ProfileManager : MonoBehaviour {
     public void resetPrefs() {
         nombrePlayer1.text = "Player 1";
         nombrePlayer2.text = "Player 2";
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.DeleteKey("PLAYER2Name");
         PlayerPrefs.DeleteKey("PLAYER1Name");
         PlayerPrefs.DeleteKey("PLAYER2Coins");

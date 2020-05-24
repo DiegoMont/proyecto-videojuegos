@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour {
 
@@ -15,6 +17,13 @@ public class MenuController : MonoBehaviour {
     public GameObject tienda;
     public GameObject items;
 
+    public GameObject[] storeItems;
+    public GameObject[] boughtItems;
+    public Button[] itembuttons;
+    private int[] prices = new int[] { 0, 80, 160, 80, 60, 100, 25, 100, 100 };
+    public Sprite active;
+    public Sprite unactive;
+
     void hideAll(){
         menuinicio.SetActive(false);
         menuDificultad.SetActive(false);
@@ -25,17 +34,21 @@ public class MenuController : MonoBehaviour {
     }
 
     void Start() {
+        PlayerPrefs.SetInt(currentPlayer + "Coins", 600);
+
         hideAll();
         loadPlayerInfo();
         menuinicio.SetActive(true);
         barraJugador.SetActive(true);
         PlayerPrefs.SetInt("RaceBegin", 0);
         PlayerPrefs.SetFloat("RaceClock", 0);
+        PlayerPrefs.SetInt(currentPlayer + "StoreObject0", 1);
+        PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive0", 1);       
     }
 
     private void loadPlayerInfo() {
         nombreJugador.text = PlayerPrefs.GetString(currentPlayer+"Name", "Guest");
-        dineroJugador.text = PlayerPrefs.GetInt(currentPlayer+"Coins", 0).ToString();
+        dineroJugador.text = PlayerPrefs.GetInt(currentPlayer+"Coins", 0).ToString();   
     }
 
     public void goToProfileSelection() {
@@ -150,6 +163,7 @@ public class MenuController : MonoBehaviour {
         hideAll();
         tienda.SetActive(true);
         barraJugador.SetActive(true);
+        UpdateStore();
     }
 
     public void OpenItems()
@@ -157,6 +171,7 @@ public class MenuController : MonoBehaviour {
         hideAll();
         items.SetActive(true);
         barraJugador.SetActive(true);
+        UpdateItems();
     }
 
     public void BacktoStart()
@@ -165,5 +180,81 @@ public class MenuController : MonoBehaviour {
         menuinicio.SetActive(true);
         barraJugador.SetActive(true);
     }
+
+    public void BuyItem(int indexitem)
+    {
+        int coins = PlayerPrefs.GetInt(currentPlayer + "Coins", 0);
+        if (coins > prices[indexitem]) {
+            PlayerPrefs.SetInt(currentPlayer + "Coins", coins - prices[indexitem]);
+            PlayerPrefs.SetInt(currentPlayer + "StoreObject" + indexitem, 1);
+        }
+        else
+        {
+            //Reproducir sonido de dinero insuficiente
+            Debug.Log("Dinero insuficiente");
+        }
+        UpdateStore();
+    }
+
+    public void UpdateStore()
+    {
+        for(int i=0; i<storeItems.Length; i++)
+        {
+            int bought = PlayerPrefs.GetInt(currentPlayer + "StoreObject" + i, 0);
+            if (bought == 1)
+            {
+                storeItems[i].SetActive(false);
+            }
+            else
+            {
+                storeItems[i].SetActive(true);
+            }
+        }
+        loadPlayerInfo();
+    }
+
+    public void UpdateItems()
+    {
+        for(int i=0; i<boughtItems.Length; i++)
+        {
+            int bought = PlayerPrefs.GetInt(currentPlayer + "StoreObject" + i, 0);
+            if (bought == 1)
+            {
+                boughtItems[i].SetActive(true);
+            }
+            else
+            {
+                boughtItems[i].SetActive(false);
+            }
+        }
+    }
+
+    public void SwitchButton(int index)
+    {
+            int state = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive" + index, 0);
+            if(state == 0)
+            {
+                PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive" + index, 1);
+                itembuttons[index].image.sprite = active;
+            }
+            else
+            {
+                PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive" + index, 0);
+                itembuttons[index].image.sprite = unactive;
+            }
+    }
+
+    public void CarButton(int index)
+    {
+        for(int i=0; i<=2; i++)
+        {
+            PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive" + i, 0);
+            itembuttons[i].image.sprite = unactive;
+        }
+
+        PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive" + index, 1);
+        itembuttons[index].image.sprite = active;
+    }
+    
 
 }
