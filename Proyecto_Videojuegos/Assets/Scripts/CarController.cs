@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-
+    // Velocidades: 18, 25, 35
     GameObject camera;
 	Rigidbody2D rb;
     GameObject ambulance;
+    public SpriteRenderer spriteRender;
+    public Sprite verde, amarillo;
+
 
 	[SerializeField]
-	float accelerationPower = 5f;
+	float accelerationPower;
 	[SerializeField]
 	float steeringPower = 5f;
 	float steeringAmount, speed, direction;
@@ -39,6 +42,7 @@ public class CarController : MonoBehaviour
 
         currentPlayer = MenuController.currentPlayer;
 
+        LoadCar();
 
         tribuneGuard = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive3");
         if (tribuneGuard==1) {
@@ -76,7 +80,36 @@ public class CarController : MonoBehaviour
         }
     }
 
- 
+      public void LoadCar()
+    {
+        int loadedcar = 0;
+        for(int i=0; i<=2; i++)
+        {
+            int state = PlayerPrefs.GetInt(MenuController.currentPlayer + "StoreObjectActive" + i, 0);
+            if(state == 1)
+            {
+                loadedcar = i;
+            }
+        }
+
+        switch (loadedcar)
+        {
+            case 0:
+                spriteRender.sprite = verde;
+                accelerationPower = 18f;
+                break;
+            case 1:
+                spriteRender.sprite = amarillo;
+                accelerationPower = 25f;
+                break;
+            case 2:
+                spriteRender.sprite = amarillo;
+                spriteRender.color = Color.red;
+                accelerationPower = 35f;
+                break;
+
+        }
+    }
 
       void OnTriggerEnter2D(Collider2D other)
     {
