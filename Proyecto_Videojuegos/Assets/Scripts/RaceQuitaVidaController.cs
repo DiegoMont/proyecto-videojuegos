@@ -12,6 +12,9 @@ public class RaceQuitaVidaController : MonoBehaviour
     public int pointsP2;
     public int pointsP3;
     public GameObject meta;
+    public float min, max;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +32,41 @@ public class RaceQuitaVidaController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+
+       int loadedcar = 0;
+
+        for(int i=0; i<=2; i++)
+        {
+            int state = PlayerPrefs.GetInt(MenuController.currentPlayer + "StoreObjectActive" + i, 0);
+            if(state == 1)
+            {
+                loadedcar = i;
+            }
+        }
+
+
+        switch (loadedcar)
+        {
+            case 0:
+                min = 3.0f;
+                max = 5.0f;
+                break;
+            case 1:
+                min = 2.0f;
+                max = 4.0f;
+                break;
+            case 2:
+                min = 1.0f;
+                max = 3.0f;
+                break;
+
+        }
          if (other.gameObject.CompareTag("RacePlayer"))
         {
           pointsP1++;
           player1.GetComponent<CarController>().setPoints(pointsP1);
           checkPlaces();
-          float lifeToSubstract = Random.Range(1.0f, 3.0f);
+          float lifeToSubstract = Random.Range(min, max);
           //float lifeToSubstract = Random.Range(10.0f, 20.0f);
            float currentLife = RaceHealthBarScript.health;
            if (currentLife <= 0) {

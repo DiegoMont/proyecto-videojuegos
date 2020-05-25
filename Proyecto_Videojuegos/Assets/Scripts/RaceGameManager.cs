@@ -49,7 +49,7 @@ public class RaceGameManager : MonoBehaviour
                 break;
             case "HARD":
                 player2.GetComponent<AutonomousCar>().setSpeed(4.5f);
-                player3.GetComponent<AutonomousCar>().setSpeed(6f); //6
+                player3.GetComponent<AutonomousCar>().setSpeed(5.0f); //6
                 break;
         }
 

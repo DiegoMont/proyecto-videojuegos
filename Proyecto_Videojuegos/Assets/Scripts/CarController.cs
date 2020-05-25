@@ -98,12 +98,12 @@ public class CarController : MonoBehaviour
         {
             case 0:
                 spriteRender.sprite = verde;
-                accelerationPower = 18f;
+                accelerationPower = 21f;
                 lastAcceleration = accelerationPower;
                 break;
             case 1:
                 spriteRender.sprite = amarillo;
-                accelerationPower = 25f;
+                accelerationPower = 26f;
                 lastAcceleration = accelerationPower;
                 break;
             case 2:
