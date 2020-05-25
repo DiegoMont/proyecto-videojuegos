@@ -26,12 +26,17 @@ public class PitsPlayerController : MonoBehaviour
     //Varaibles para efectos de sonido
     public AudioClip getCoinClip;
 
+    //Variables para efectos de los objetos de la tienda
+    private int valorMonedas;
+
 
     void Start()
     {
         gameManager = FindObjectOfType<PitsGameManager>();
         selectedicon = FindObjectOfType<PitsEquippedItemController>();
         Safespot = transform.position;
+        valorMonedas = 1 + PlayerPrefs.GetInt(MenuController.currentPlayer + "StoreObjectActive7");
+        moveSpeed *= PlayerPrefs.GetInt(MenuController.currentPlayer + "StoreObjectActive6") + 1;
     }
 
     private void FixedUpdate()
@@ -90,7 +95,7 @@ public class PitsPlayerController : MonoBehaviour
         {
             gameObject.GetComponent<AudioSource>().PlayOneShot(getCoinClip);
             int dineroActual = PlayerPrefs.GetInt("EarnedCoins");
-            dineroActual++;
+            dineroActual += valorMonedas;
             PlayerPrefs.SetInt("EarnedCoins", dineroActual);
             Destroy(other.gameObject);
             Debug.Log(dineroActual);

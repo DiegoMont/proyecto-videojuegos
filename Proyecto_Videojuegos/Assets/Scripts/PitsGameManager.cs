@@ -67,7 +67,7 @@ public class PitsGameManager : MonoBehaviour
                 break;
         }
 
-        TimerControl = 90;
+        TimerControl = 90 + PlayerPrefs.GetInt(MenuController.currentPlayer + "StoreObjectActive8")*60;
     }
     void Start()
     {
