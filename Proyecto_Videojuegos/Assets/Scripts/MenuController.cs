@@ -42,8 +42,21 @@ public class MenuController : MonoBehaviour {
         barraJugador.SetActive(true);
         PlayerPrefs.SetInt("RaceBegin", 0);
         PlayerPrefs.SetFloat("RaceClock", 0);
-        PlayerPrefs.SetInt(currentPlayer + "StoreObject0", 1);
-        PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive0", 1);       
+
+
+        int car2 = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive1", 0);
+        int car3 = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive2", 0);
+
+        if (car2 == 1 || car3 == 1)
+        {
+            PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive0", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive0", 1);
+        }
+
+        PlayerPrefs.SetInt(currentPlayer + "StoreObject0", 1);     
     }
 
     private void loadPlayerInfo() {
@@ -226,6 +239,33 @@ public class MenuController : MonoBehaviour {
             else
             {
                 boughtItems[i].SetActive(false);
+            }
+        }
+
+        for(int i=3; i<itembuttons.Length; i++)
+        {
+            int butstate = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive" + i, 0);
+            if (butstate==0)
+            {
+                itembuttons[i].image.sprite = unactive;
+            }
+            else
+            {
+                itembuttons[i].image.sprite = active;
+            }
+        }
+
+        for (int i = 0; i <= 2; i++)
+        {
+            int carsellected = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive" + i, 0);
+            
+            if(carsellected == 1)
+            {
+                itembuttons[i].image.sprite = active;
+            }
+            else
+            {
+                itembuttons[i].image.sprite = unactive;
             }
         }
     }
