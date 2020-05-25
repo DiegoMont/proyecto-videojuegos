@@ -1517,11 +1517,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8239899248303924faf05f71b0260669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cartoSpawn: 2
   cars:
   - {fileID: 4813610449847946071, guid: 596657ab104a5dd4291e20200be44a6b, type: 3}
-  - {fileID: 4566287868011115729, guid: 1d021b7bd653beb4195f9dace2a4b1ff, type: 3}
   - {fileID: 2349826933004894507, guid: b9c093f2ef3bc1a4ab510e3bae796ec0, type: 3}
+  - {fileID: 4566287868011115729, guid: 1d021b7bd653beb4195f9dace2a4b1ff, type: 3}
 --- !u!1 &775418578
 GameObject:
   m_ObjectHideFlags: 0

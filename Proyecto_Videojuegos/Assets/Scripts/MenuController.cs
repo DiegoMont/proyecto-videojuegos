@@ -24,6 +24,8 @@ public class MenuController : MonoBehaviour {
     public Sprite active;
     public Sprite unactive;
 
+    private MenuAudio audio;
+
     void hideAll(){
         menuinicio.SetActive(false);
         menuDificultad.SetActive(false);
@@ -42,6 +44,7 @@ public class MenuController : MonoBehaviour {
         barraJugador.SetActive(true);
         PlayerPrefs.SetInt("RaceBegin", 0);
         PlayerPrefs.SetFloat("RaceClock", 0);
+        audio = FindObjectOfType<MenuAudio>();
 
 
         int car2 = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive1", 0);
@@ -199,12 +202,14 @@ public class MenuController : MonoBehaviour {
     {
         int coins = PlayerPrefs.GetInt(currentPlayer + "Coins", 0);
         if (coins > prices[indexitem]) {
+            audio.playStoreSound(1);
             PlayerPrefs.SetInt(currentPlayer + "Coins", coins - prices[indexitem]);
             PlayerPrefs.SetInt(currentPlayer + "StoreObject" + indexitem, 1);
         }
         else
         {
             //Reproducir sonido de dinero insuficiente
+            audio.playStoreSound(0);
             Debug.Log("Dinero insuficiente");
         }
         UpdateStore();
@@ -283,6 +288,7 @@ public class MenuController : MonoBehaviour {
                 PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive" + index, 0);
                 itembuttons[index].image.sprite = unactive;
             }
+        audio.ItemsSound();
     }
 
     public void CarButton(int index)
@@ -295,6 +301,8 @@ public class MenuController : MonoBehaviour {
 
         PlayerPrefs.SetInt(currentPlayer + "StoreObjectActive" + index, 1);
         itembuttons[index].image.sprite = active;
+
+        audio.ItemsSound();
     }
     
 
