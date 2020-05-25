@@ -30,6 +30,8 @@ public class CarController : MonoBehaviour
     public int rainTire;
     public static int immunity;
     public string currentPlayer;
+
+    public float lastAcceleration;
   
     void Start()
     {
@@ -97,15 +99,18 @@ public class CarController : MonoBehaviour
             case 0:
                 spriteRender.sprite = verde;
                 accelerationPower = 18f;
+                lastAcceleration = accelerationPower;
                 break;
             case 1:
                 spriteRender.sprite = amarillo;
                 accelerationPower = 25f;
+                lastAcceleration = accelerationPower;
                 break;
             case 2:
                 spriteRender.sprite = amarillo;
                 spriteRender.color = Color.red;
                 accelerationPower = 35f;
+                lastAcceleration = accelerationPower;
                 break;
 
         }
@@ -189,7 +194,8 @@ public class CarController : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Oil")){
-            accelerationPower = 25f;
+
+            accelerationPower = lastAcceleration;
 
         }
     }
