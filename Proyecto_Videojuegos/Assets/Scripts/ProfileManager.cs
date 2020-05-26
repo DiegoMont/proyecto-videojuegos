@@ -10,11 +10,14 @@ public class ProfileManager : MonoBehaviour {
     public TextMeshProUGUI placeholder;
     public GameObject formNombre;
     private string editingPlayer;
+    private static bool isGuestReseted = false;
 
     private void Start(){
         nombrePlayer2.text = PlayerPrefs.GetString("PLAYER2Name", "Player 2");
         nombrePlayer1.text = PlayerPrefs.GetString("PLAYER1Name", "Player 1");
         formNombre.SetActive(false);
+        if (!isGuestReseted)
+            resetGuest();
     }
 
     public void checkName() {
@@ -74,6 +77,13 @@ public class ProfileManager : MonoBehaviour {
         PlayerPrefs.SetString(jugador + "Name", name);
         PlayerPrefs.SetInt(jugador + "Coins", 0);
         PlayerPrefs.SetInt(editingPlayer + "Activo", 1);
+    }
+
+    private void resetGuest() {
+        PlayerPrefs.DeleteKey("PLAYER2Coins");
+        for(int i = 9; i > 1; i--)
+          PlayerPrefs.DeleteKey("GUEST" + "StoreObject" + i);
+        isGuestReseted = true;
     }
 
     public void resetPrefs() {
