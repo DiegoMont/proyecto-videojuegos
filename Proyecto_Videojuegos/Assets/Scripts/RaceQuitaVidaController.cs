@@ -118,6 +118,10 @@ public class RaceQuitaVidaController : MonoBehaviour
       PlayerPrefs.SetInt("numberLapsP2", meta.GetComponent<RaceMetaController>().currentLapsP2);
       PlayerPrefs.SetInt("numberLapsP3", meta.GetComponent<RaceMetaController>().currentLapsP3);
 
+      PlayerPrefs.SetInt("firstP1", 1);
+      PlayerPrefs.SetInt("firstP2", 1);
+      PlayerPrefs.SetInt("firstP3", 1);
+
 
 
 

@@ -19,6 +19,7 @@ public class RaceMetaController : MonoBehaviour
     public bool firstP3 = false;
     private RaceGameManager gameManager;
     public GameObject sceneManager;
+    public int aux1, aux2, aux3;
 
 
     // Start is called before the first frame update
@@ -29,6 +30,12 @@ public class RaceMetaController : MonoBehaviour
     	totalLaps = 5;
         currentLaps = 0;
         updateLaps(currentLaps, totalLaps);
+
+        aux1 = PlayerPrefs.GetInt("firstP1");
+        aux2 = PlayerPrefs.GetInt("firstP2");
+        aux3 = PlayerPrefs.GetInt("firstP3");
+        assignAux();
+
         
     }
 
@@ -36,6 +43,26 @@ public class RaceMetaController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void assignAux() {
+        if (aux1 == 0) {
+            firstP1 = false;
+        } else {
+            firstP1 = true;
+        }
+
+        if (aux2 == 0) {
+            firstP2 = false;
+        } else {
+            firstP2 = true;
+        }
+
+        if (aux3 == 0) {
+            firstP3 = false;
+        } else {
+            firstP3 = true;
+        }
     }
 
   void OnTriggerEnter2D(Collider2D other)

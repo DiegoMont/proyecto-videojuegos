@@ -74,6 +74,10 @@ public class MenuController : MonoBehaviour {
     public static void playGame()
     {
         PlayerPrefs.SetInt("EarnedCoins", 0);
+        PlayerPrefs.SetInt("firstP1", 0);
+        PlayerPrefs.SetInt("firstP2", 0);
+        PlayerPrefs.SetInt("firstP3", 0);
+
     }
 
     public void playMap1()
@@ -100,6 +104,8 @@ public class MenuController : MonoBehaviour {
       PlayerPrefs.SetInt("numberLaps", 0);
       PlayerPrefs.SetInt("numberLapsP2", 0);
       PlayerPrefs.SetInt("numberLapsP3", 0);
+
+
     }
 
     public void playMap2()
