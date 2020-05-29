@@ -36,7 +36,7 @@ public class MenuController : MonoBehaviour {
     }
 
     void Start() {
-        PlayerPrefs.SetInt(currentPlayer + "Coins", 600);
+        //PlayerPrefs.SetInt(currentPlayer + "Coins", 600);
 
         hideAll();
         loadPlayerInfo();
