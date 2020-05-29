@@ -80,6 +80,9 @@ public class MenuController : MonoBehaviour {
         PlayerPrefs.SetInt("pointsP1", 0);
         PlayerPrefs.SetInt("pointsP2", 0);
         PlayerPrefs.SetInt("pointsP3", 0);
+        PlayerPrefs.SetFloat("PlayerRotationX", -0.0f);
+        PlayerPrefs.SetFloat("PlayerRotationY", -0.0f);
+        PlayerPrefs.SetFloat("PlayerRotationZ", -90.0f);
 
 
     }

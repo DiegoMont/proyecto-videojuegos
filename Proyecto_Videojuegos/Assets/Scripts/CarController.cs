@@ -44,8 +44,20 @@ public class CarController : MonoBehaviour
 
         currentPlayer = MenuController.currentPlayer;
 
+        //transform.rotation.z = PlayerPrefs.GetFloat("PlayerRotation");
+       // transform.Rotate(0,0,0);
+        
+        //transform.rotation = Quaternion.Euler(0,0,PlayerPrefs.GetFloat("PlayerRotation"));
         
 
+        //transform.rotation = Quaternion.Euler(0,0,0);
+        //transform.Rotate(PlayerPrefs.GetFloat("PlayerRotationX"),PlayerPrefs.GetFloat("PlayerRotationY"),PlayerPrefs.GetFloat("PlayerRotationZ"));
+       // transform.rotation = Quaternion.Euler(
+         //PlayerPrefs.GetFloat("PlayerRotationX"),
+         //PlayerPrefs.GetFloat("PlayerRotationY"),
+         //PlayerPrefs.GetFloat("PlayerRotationZ"));    
+ 
+        transform.eulerAngles= new Vector3(PlayerPrefs.GetFloat("PlayerRotationX"), PlayerPrefs.GetFloat("PlayerRotationY"), PlayerPrefs.GetFloat("PlayerRotationZ"));
         LoadCar();
 
         tribuneGuard = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive3");
