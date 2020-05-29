@@ -120,7 +120,7 @@ public class RaceQuitaVidaController : MonoBehaviour
       PlayerPrefs.SetFloat("Player3PositionX", player3.GetComponent<Transform>().position.x);
       PlayerPrefs.SetFloat("Player3PositionY", player3.GetComponent<Transform>().position.y);
       PlayerPrefs.SetInt("Player3Index", player3.GetComponent<AutonomousCar>().getTargetIndex());
-      PlayerPrefs.SetInt("Player3Points", player3.GetComponent<AutonomousCar>().getPoints());
+        PlayerPrefs.SetInt("Player3Points", player3.GetComponent<AutonomousCar>().getPoints());
 
 
       PlayerPrefs.SetInt("numberLaps", meta.GetComponent<RaceMetaController>().currentLaps);

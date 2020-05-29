@@ -20,6 +20,9 @@ public class RaceMetaController : MonoBehaviour
     private RaceGameManager gameManager;
     public GameObject sceneManager;
     public int aux1, aux2, aux3;
+    public GameObject player1;
+    public GameObject player2;
+    public GameObject player3;
 
 
     // Start is called before the first frame update
@@ -30,6 +33,10 @@ public class RaceMetaController : MonoBehaviour
     	totalLaps = 5;
         currentLaps = 0;
         updateLaps(currentLaps, totalLaps);
+
+        player1 = GameObject.FindWithTag("RacePlayer");
+        player2 = GameObject.FindWithTag("RacePlayer2");
+        player3 = GameObject.FindWithTag("RacePlayer3");
 
         aux1 = PlayerPrefs.GetInt("firstP1");
         aux2 = PlayerPrefs.GetInt("firstP2");
@@ -77,9 +84,14 @@ public class RaceMetaController : MonoBehaviour
                 currentLaps++;
                 updateLaps(currentLaps, totalLaps);
             }
-            if (currentLaps>= totalLaps) {
+            if (currentLaps>= totalLaps && player1.GetComponent<CarController>().getPoints() > 75) {
                 winRace();
             }
+            if (currentLaps>= totalLaps && player1.GetComponent<CarController>().getPoints() < 75) {
+                Debug.Log("Pérdida por trampa");
+                lostRace();
+            }
+
             if (currentLaps != 0)
             {
                 gameManager.PlaySound("Lap");
