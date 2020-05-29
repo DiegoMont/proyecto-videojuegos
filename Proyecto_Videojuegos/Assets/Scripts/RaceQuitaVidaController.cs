@@ -23,6 +23,11 @@ public class RaceQuitaVidaController : MonoBehaviour
         player2 = GameObject.FindWithTag("RacePlayer2");
         player3 = GameObject.FindWithTag("RacePlayer3");
         meta = GameObject.FindWithTag("RaceMeta");
+
+        player1.GetComponent<CarController>().setPoints(PlayerPrefs.GetInt("pointsP1"));
+        player2.GetComponent<AutonomousCar>().setPoints(PlayerPrefs.GetInt("pointsP2"));
+        player3.GetComponent<AutonomousCar>().setPoints(PlayerPrefs.GetInt("pointsP3"));
+
     }
 
     // Update is called once per frame
@@ -63,7 +68,9 @@ public class RaceQuitaVidaController : MonoBehaviour
         }
          if (other.gameObject.CompareTag("RacePlayer"))
         {
+          pointsP1 = player1.GetComponent<CarController>().getPoints();
           pointsP1++;
+          //Debug.Log(pointsP1);
           player1.GetComponent<CarController>().setPoints(pointsP1);
           checkPlaces();
           float lifeToSubstract = Random.Range(min, max);
@@ -82,11 +89,13 @@ public class RaceQuitaVidaController : MonoBehaviour
         
         }
         if (other.gameObject.CompareTag("RacePlayer2")) {
+          pointsP2 = player2.GetComponent<AutonomousCar>().getPoints();
           pointsP2++;
           player2.GetComponent<AutonomousCar>().setPoints(pointsP2);
           checkPlaces();
         }
         if (other.gameObject.CompareTag("RacePlayer3")) {
+          pointsP3 = player3.GetComponent<AutonomousCar>().getPoints();
           pointsP3++;
           player3.GetComponent<AutonomousCar>().setPoints(pointsP3);
           checkPlaces();
@@ -121,6 +130,11 @@ public class RaceQuitaVidaController : MonoBehaviour
       PlayerPrefs.SetInt("firstP1", 1);
       PlayerPrefs.SetInt("firstP2", 1);
       PlayerPrefs.SetInt("firstP3", 1);
+
+      PlayerPrefs.SetInt("pointsP1", player1.GetComponent<CarController>().getPoints());
+      PlayerPrefs.SetInt("pointsP2", player2.GetComponent<AutonomousCar>().getPoints());
+      PlayerPrefs.SetInt("pointsP3", player3.GetComponent<AutonomousCar>().getPoints());
+
 
 
 

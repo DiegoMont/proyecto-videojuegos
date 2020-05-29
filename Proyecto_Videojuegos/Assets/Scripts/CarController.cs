@@ -44,6 +44,8 @@ public class CarController : MonoBehaviour
 
         currentPlayer = MenuController.currentPlayer;
 
+        
+
         LoadCar();
 
         tribuneGuard = PlayerPrefs.GetInt(currentPlayer + "StoreObjectActive3");
